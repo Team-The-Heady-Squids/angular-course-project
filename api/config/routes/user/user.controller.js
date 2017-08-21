@@ -1,3 +1,5 @@
+const { errors } = require('../../err/');
+
 const controller = (data) => {
   const registerUser = (req, res, next) => {
     return data.user.createUser(req.body)
@@ -25,11 +27,20 @@ const controller = (data) => {
   };
 
   const logoutUser = (req, res, next) => {
+    if (!req.user) {
+      return errors.notLoggedIn(next);
+    }
     req.logout();
-    res.json('something');
+    return res.status(200)
+      .json({
+        msg: 'Successfuly logged out!',
+      });
   };
 
   const ownProfile = (req, res, next) => {
+    if (!req.user) {
+      return errors.notLoggedIn(next);
+    }
     return res.status(200)
       .json(req.user);
   };
@@ -47,7 +58,21 @@ const controller = (data) => {
   };
 
   const updateUser = (req, res, next) => {
-    
+    if (!req.user) {
+      return errors.notLoggedIn(next);
+    }
+    const user = req.user;
+    const newPassHash = req.body.passHash;
+    return data.user.updateUser({ user, newPassHash })
+      .then((result) => {
+        res.status(200)
+          .json({
+            msg: result,
+          });
+      })
+      .catch((err) => {
+        next(err);
+      });
   };
 
   return {

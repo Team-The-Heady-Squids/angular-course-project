@@ -5,7 +5,7 @@ const userData = (db) => {
 
   const findUserByUsername = (username) => {
     return new Promise((resolve, reject) => {
-      usersDb.findOne({ username }, (err, match) => {
+      usersDb.findOne({ usernameLC: username.toLowerCase() }, (err, match) => {
         if (err) {
           return reject(err);
         }
@@ -80,8 +80,21 @@ const userData = (db) => {
       });
   };
 
-  const updateUser = (userDetails) => {
-
+  const updateUser = (options) => {
+    const { user, newPassHash } = options;
+    return new Promise((resolve, reject) => {
+      usersDb.updateOne(user, {
+        $set: { passHash: newPassHash },
+      }, (err, operation) => {
+        if (operation.result.nModified === 0) {
+          return reject(new Error('Cannot change password!'));
+        }
+        if (err) {
+          return reject(err);
+        }
+        return resolve('Successfuly changed password!');
+      });
+    });
   };
 
   return {

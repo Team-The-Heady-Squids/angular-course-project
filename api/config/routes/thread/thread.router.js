@@ -5,11 +5,10 @@ const attach = (app, data) => {
 
   router.post('/', controller.createThread);
   router.get('/:threadId', controller.getThread);
-  router.delete('/:threadId', controller.deleteThread);
   router.post('/:threadId', controller.createPost);
-  router.put('/:threadId', controller.editThread);
-  router.put('/:threadId/post/:postId', controller.editPost);
-  router.delete('/:threadId/post/:postId', controller.deletePost);
+  router.delete('/:threadId', controller.deleteThread);
+  router.put('/:threadId/:postId', controller.editPost);
+  router.delete('/:threadId/:postId', controller.deletePost);
 
   app.use('/threads', router);
   console.log('Attached routes for /threads...');
