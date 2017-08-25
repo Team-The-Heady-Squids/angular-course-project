@@ -4,13 +4,20 @@ const controller = (data) => {
   const registerUser = (req, res, next) => {
     return data.user.createUser(req.body)
       .then((newUser) => {
+        const username = newUser.username;
+        const authKey = newUser.authKey;
         req.login(newUser, (err) => {
           if (err) {
             next(err);
           }
           return res.status(200)
-            .json('Successfuly registered and logged in as '
-              + newUser.username);
+            .json({
+              msg: `Successfuly registered and logged in as ${username}!`,
+              user: {
+                username,
+                authKey,
+              },
+            });
         });
       })
       .catch((err) => {
@@ -20,9 +27,14 @@ const controller = (data) => {
 
   const loginUser = (req, res, next) => {
     const username = req.user.username;
+    const authKey = req.user.authKey;
     return res.status(200)
       .json({
         msg: `Successfuly logged in as ${username}!`,
+        user: {
+          username,
+          authKey,
+        },
       });
   };
 
@@ -42,7 +54,10 @@ const controller = (data) => {
       return errors.notLoggedIn(next);
     }
     return res.status(200)
-      .json(req.user);
+      .json({
+        username: req.user.username,
+        joined: req.user.joined,
+      });
   };
 
   const userProfile = (req, res, next) => {
@@ -50,7 +65,10 @@ const controller = (data) => {
     data.user.getProfile(username)
       .then((match) => {
         return res.status(200)
-          .json(match);
+          .json({
+            username: match.username,
+            joined: match.joined,
+          });
       })
       .catch((err) => {
         next(err);
@@ -67,7 +85,7 @@ const controller = (data) => {
       .then((result) => {
         res.status(200)
           .json({
-            msg: result,
+            msg: 'Successfuly changed password!',
           });
       })
       .catch((err) => {

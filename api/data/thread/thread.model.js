@@ -3,6 +3,7 @@ class Thread {
     this.author = threadData.author;
     this.title = threadData.title;
     this.id = Thread.getId(threadData.title);
+    this.category = threadData.category;
     this.originalPost = threadData.originalPost;
     this.posts = [];
     this.created = (new Date()).toISOString();

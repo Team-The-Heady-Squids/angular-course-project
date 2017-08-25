@@ -1,6 +1,17 @@
 const { errors } = require('../../err/');
 
 const controller = (data) => {
+  const getThreads = (req, res, next) => {
+    const category = req.params.category;
+    const perPage = parseInt(req.params.perPage, 10);
+    const pageIndex = parseInt(req.params.pageIndex, 10);
+    data.thread.getThreads(category, perPage, pageIndex)
+      .then((result) => {
+        res.status(200)
+          .json(result);
+      });
+  };
+
   const getThread = (req, res, next) => {
     const id = req.params.threadId;
     data.thread.getThread(id)
@@ -20,10 +31,14 @@ const controller = (data) => {
     const author = req.user.username;
     const title = req.body.title;
     const content = req.body.content;
-    return data.thread.createThread({ author, title, content })
+    const category = req.body.category;
+    return data.thread.createThread({ author, title, content, category })
       .then((newThread) => {
         res.status(200)
-          .json(newThread);
+          .json({
+            msg: 'Successfuly created thread!',
+            result: newThread,
+          });
       })
       .catch((err) => {
         next(err);
@@ -49,7 +64,8 @@ const controller = (data) => {
       .then((result) => {
         res.status(200)
           .json({
-            msg: result,
+            msg: 'Successfuly deleted thread!',
+            data: result,
           });
       })
       .catch((err) => {
@@ -68,7 +84,8 @@ const controller = (data) => {
       .then((result) => {
         res.status(200)
           .json({
-            msg: result,
+            msg: 'Successfuly created post!',
+            data: result,
           });
       })
       .catch((err) => {
@@ -88,7 +105,8 @@ const controller = (data) => {
       .then((result) => {
         res.status(200)
           .json({
-            msg: result,
+            msg: 'Successfuly edited post!',
+            data: result,
           });
       })
       .catch((err) => {
@@ -107,7 +125,8 @@ const controller = (data) => {
       .then((result) => {
         res.status(200)
           .json({
-            msg: result,
+            msg: 'Successfuly deleted post!',
+            data: result,
           });
       })
       .catch((err) => {
@@ -116,6 +135,7 @@ const controller = (data) => {
   };
 
   return {
+    getThreads,
     getThread,
     createThread,
     deleteThread,
