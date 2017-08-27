@@ -12,6 +12,12 @@ import { ForumPostComponent } from './forum-post/forum-post.component';
     SharedModule,
     ForumRoutingModule
   ],
-  declarations: [ForumViewComponent, ForumThreadDescriptionComponent, ForumThreadPostsComponent, ForumThreadCreateComponent, ForumPostComponent]
+  declarations: [
+    ForumViewComponent,
+    ForumThreadDescriptionComponent,
+    ForumThreadPostsComponent,
+    ForumThreadCreateComponent,
+    ForumPostComponent
+  ]
 })
 export class ForumModule { }

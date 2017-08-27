@@ -14,8 +14,6 @@ export class ForumThreadPostsComponent implements OnInit {
 
   ngOnInit() {
     const id = parseInt(this.route.snapshot.params['id'], 10);
-    console.log(id);
     this.thread = this.forum.getById(id);
   }
-
 }
