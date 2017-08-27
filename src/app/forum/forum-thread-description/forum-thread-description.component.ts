@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-forum-thread-description',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./forum-thread-description.component.css']
 })
 export class ForumThreadDescriptionComponent implements OnInit {
+  @Input()
+  thread;
 
   constructor() { }
 

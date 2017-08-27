@@ -1,3 +1,4 @@
+import { ForumService } from './../../_core/forum.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./forum-view.component.css']
 })
 export class ForumViewComponent implements OnInit {
-
-  constructor() { }
+  threads: any[];
+  constructor(private forum: ForumService) { }
 
   ngOnInit() {
+    this.threads = this.forum.getThreads();
   }
 
 }

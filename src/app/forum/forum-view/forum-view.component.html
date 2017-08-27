@@ -1,3 +1,6 @@
-<p>
-  forum-view works!
-</p>
+<h1>Forum</h1>
+<ul>
+  <li *ngFor="let thread of threads">
+    <app-forum-thread-description [thread]="thread"></app-forum-thread-description>
+  </li>
+</ul>
