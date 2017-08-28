@@ -4,6 +4,8 @@ import { HeaderModule } from './header/header.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { AlertModule } from 'ngx-bootstrap';
+
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -13,7 +15,8 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     HeaderModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AlertModule.forRoot(),
   ],
   providers: [
     ForumService
