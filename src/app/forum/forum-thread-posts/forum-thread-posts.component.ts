@@ -1,4 +1,4 @@
-import { ForumService } from './../../_core/forum.service';
+import { ForumService } from './../../_core/forum-service/index';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -13,7 +13,10 @@ export class ForumThreadPostsComponent implements OnInit {
   constructor(private forum: ForumService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    const id = parseInt(this.route.snapshot.params['id'], 10);
-    this.thread = this.forum.getById(id);
+    const id = this.route.snapshot.params['id'];
+    this.forum.getById(id)
+      .then((thread) => {
+        this.thread = thread;
+      });
   }
 }
