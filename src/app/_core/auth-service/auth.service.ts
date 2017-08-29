@@ -5,7 +5,13 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AuthService {
 
+
   constructor(private users: UsersService, private logger: LoggerService) { }
+
+  register(user) {
+    // validations from users.service need to placed here
+    return this.users.register(user);
+  }
 
   login(user) {
     return this.users.login(user)
