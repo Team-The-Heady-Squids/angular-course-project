@@ -1,6 +1,16 @@
-<h1>Forum</h1>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Forum</h3>
+  </div>
+  <div class="panel-body" *ngFor="let thread of threads">
+    <app-forum-thread-description [thread]="thread"></app-forum-thread-description>
+    Panel content
+  </div>
+</div>
+
+<!-- <h1>Forum</h1>
 <ul>
   <li *ngFor="let thread of threads">
     <app-forum-thread-description [thread]="thread"></app-forum-thread-description>
   </li>
-</ul>
+</ul> -->

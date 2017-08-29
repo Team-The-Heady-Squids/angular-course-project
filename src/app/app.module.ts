@@ -6,8 +6,6 @@ import { CoreModule } from './_core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderModule } from './header/header.module';
 
-import { AlertModule } from 'ngx-bootstrap';
-
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -19,7 +17,6 @@ import { AppComponent } from './app.component';
     HttpModule,
     HeaderModule,
     AppRoutingModule,
-    AlertModule.forRoot(),
     CoreModule
   ],
   providers: [],
