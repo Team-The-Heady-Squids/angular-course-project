@@ -8,15 +8,15 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./forum-thread-posts.component.css']
 })
 export class ForumThreadPostsComponent implements OnInit {
-  thread;
+  forumThread;
 
-  constructor(private forum: ForumService, private route: ActivatedRoute) { }
+  constructor(private forumService: ForumService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     const id = this.route.snapshot.params['id'];
-    this.forum.getById(id)
-      .then((thread) => {
-        this.thread = thread;
+    this.forumService.getById(id)
+      .then((forumThread) => {
+        this.forumThread = forumThread;
       });
   }
 }

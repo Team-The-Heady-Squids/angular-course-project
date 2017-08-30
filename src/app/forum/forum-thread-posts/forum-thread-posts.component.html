@@ -1,7 +1,7 @@
-<h1>{{thread.title}}</h1>
-<app-forum-post [post]="thread.originalPost"></app-forum-post>
+<h1>{{forumThread.title}}</h1>
+<app-forum-post [post]="forumThread.originalPost"></app-forum-post>
 <ul>
-  <li *ngFor="let post of thread.posts">
+  <li *ngFor="let post of forumThread.posts">
     <app-forum-post [post]="post"></app-forum-post>
   </li>
 </ul>

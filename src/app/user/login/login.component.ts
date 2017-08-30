@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   username;
   password;
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -22,9 +22,9 @@ export class LoginComponent implements OnInit {
       username: this.username,
       passHash: this.password
     };
-    this.auth.login(user)
+    this.authService.login(user)
       .then(() => {
-        this.router.navigate(['../home']);
+        this.router.navigateByUrl('/home');
       });
   }
 }

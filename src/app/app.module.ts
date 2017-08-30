@@ -17,7 +17,7 @@ import { AppComponent } from './app.component';
     HttpModule,
     HeaderModule,
     AppRoutingModule,
-    CoreModule
+    CoreModule // Contains global services
   ],
   providers: [],
   bootstrap: [AppComponent]

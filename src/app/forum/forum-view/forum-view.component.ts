@@ -7,13 +7,13 @@ import { ForumService } from '../../_core/forum-service/index';
   styleUrls: ['./forum-view.component.css']
 })
 export class ForumViewComponent implements OnInit {
-  threads;
-  constructor(private forum: ForumService) { }
+  forumThreads;
+  constructor(private forumService: ForumService) { }
 
   ngOnInit() {
-    this.forum.getThreads()
-      .then((threads) => {
-        this.threads = threads;
+    this.forumService.getThreads()
+      .then((forumThreads) => {
+        this.forumThreads = forumThreads;
       });
   }
 

@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ForumThreadDescriptionComponent implements OnInit {
   @Input()
-  thread;
+  forumThread;
 
   constructor() { }
 
