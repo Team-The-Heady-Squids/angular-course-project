@@ -4,6 +4,7 @@
   <span>, </span>
   <a (click)="logout();">logout</a>
 </div>
+
 <div *ngIf="!user">
   <a [routerLink]="[ '/users/login' ]">Login</a>
   <span> or </span>
