@@ -1,3 +1,4 @@
+import { AlertService } from './../alert-service/alert.service';
 import { UsersService } from './../users-service/index';
 import { LoggerService } from './../logger-service/index';
 import { Injectable } from '@angular/core';
@@ -5,28 +6,36 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AuthService {
 
+  constructor(private usersService: UsersService,
+    private logger: LoggerService,
+    private alert: AlertService) { }
 
-  constructor(private users: UsersService, private logger: LoggerService) { }
+  writeToLocalStorage(data) {
+    localStorage.setItem('username', data['username']);
+    localStorage.setItem('token', data['authKey']);
+    window.location.reload();
+    return Promise.resolve();
+  }
 
   register(user) {
-    // validations from users.service need to placed here
-    return this.users.register(user);
+    return this.usersService.register(user)
+      .then((response) => {
+        response = response.json();
+        const match = response['user'];
+        const msg = response['msg'];
+        this.alert.msg(msg);
+        return this.writeToLocalStorage(match);
+      });
   }
 
   login(user) {
-    return this.users.login(user)
-      .then((match) => {
-        if (!match) {
-          return this.logger.log('Wrong username!');
-        }
-        if (match.passHash !== user.passHash) {
-          return this.logger.log('Wrong password!');
-        }
-        this.logger.log('Successful login');
-        localStorage.setItem('username', match.username);
-        localStorage.setItem('token', match.authKey);
-        window.location.reload();
-        return Promise.resolve();
+    return this.usersService.login(user)
+      .then((response) => {
+        response = response.json();
+        const match = response['user'];
+        const msg = response['msg'];
+        this.alert.msg(msg);
+        return this.writeToLocalStorage(match);
       });
   }
 

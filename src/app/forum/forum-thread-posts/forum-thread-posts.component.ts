@@ -8,7 +8,16 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./forum-thread-posts.component.css']
 })
 export class ForumThreadPostsComponent implements OnInit {
-  forumThread;
+  forumThread = {
+    author: '',
+    title: '',
+    id: '',
+    originalPost: {
+      content: '',
+    },
+    posts: [],
+    created: '',
+  };
 
   constructor(private forumService: ForumService, private route: ActivatedRoute) { }
 
@@ -16,7 +25,8 @@ export class ForumThreadPostsComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
     this.forumService.getById(id)
       .then((forumThread) => {
-        this.forumThread = forumThread;
+        this.forumThread = forumThread.json();
+        console.log(this.forumThread);
       });
   }
 }

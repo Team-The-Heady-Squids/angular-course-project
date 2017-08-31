@@ -80,6 +80,21 @@ const userData = (db) => {
       });
   };
 
+  const loginUser = (options) => {
+    const { username, passHash } = options;
+    return new Promise((resolve, reject) => {
+      usersDb.findOne({ username, passHash }, (err, match) => {
+        if (err) {
+          return reject(err);
+        }
+        if (!match) {
+          return reject('No such user');
+        }
+        return resolve(match);
+      });
+    });
+  };
+
   const updateUser = (options) => {
     const { user, newPassHash } = options;
     return new Promise((resolve, reject) => {
@@ -104,6 +119,7 @@ const userData = (db) => {
     getProfile,
     getOwnProfile,
     createUser,
+    loginUser,
     updateUser,
   };
 };

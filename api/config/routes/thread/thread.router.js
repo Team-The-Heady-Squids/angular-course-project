@@ -3,7 +3,7 @@ const attach = (app, data) => {
   const controller = require('./thread.controller')(data);
   const router = new Router();
 
-  router.get('/:category/:perPage/:pageIndex', controller.getThreads);
+  router.get('/', controller.getThreads);
   router.post('/', controller.createThread);
   router.get('/:threadId', controller.getThread);
   router.post('/:threadId', controller.createPost);

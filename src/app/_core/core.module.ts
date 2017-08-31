@@ -1,3 +1,5 @@
+import { AlertService } from './alert-service/alert.service';
+import { BaseHeaders } from './base-headers';
 import { NgModule } from '@angular/core';
 
 import { AuthService } from './auth-service/index';
@@ -12,7 +14,9 @@ import { LoggerService } from './logger-service/index';
     ForumService,
     UsersService,
     AuthService,
-    LoggerService
+    LoggerService,
+    AlertService,
+    BaseHeaders
   ]
 })
 export class CoreModule { }

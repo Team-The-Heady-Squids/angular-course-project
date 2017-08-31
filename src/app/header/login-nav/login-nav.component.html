@@ -1,6 +1,6 @@
 <div *ngIf="user">
   <span>Logged in as</span>
-  <a [routerLink]="[ '/users', user ]">{{user}}</a>
+  <a [routerLink]="[ '/users', 'profile' ]">{{user}}</a>
   <span>, </span>
   <a (click)="logout();">logout</a>
 </div>

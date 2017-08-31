@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const attach = (app, data, passport) => {
+const attach = (app, data) => {
   const controller = require('./user.controller')(data);
   const router = new Router();
 
@@ -7,7 +7,7 @@ const attach = (app, data, passport) => {
   router.post('/', controller.registerUser);
   router.put('/', controller.updateUser);
   router.get('/:username', controller.userProfile);
-  router.put('/auth', passport.authenticate('local'), controller.loginUser);
+  router.put('/auth', controller.loginUser);
   router.put('/logout', controller.logoutUser);
 
   app.use('/users', router);

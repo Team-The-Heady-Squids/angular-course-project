@@ -2,10 +2,7 @@ const { errors } = require('../../err/');
 
 const controller = (data) => {
   const getThreads = (req, res, next) => {
-    const category = req.params.category;
-    const perPage = parseInt(req.params.perPage, 10);
-    const pageIndex = parseInt(req.params.pageIndex, 10);
-    data.thread.getThreads(category, perPage, pageIndex)
+    data.thread.getThreads()
       .then((result) => {
         res.status(200)
           .json(result);

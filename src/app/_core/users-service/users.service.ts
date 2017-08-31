@@ -1,39 +1,32 @@
+import { BaseHeaders } from './../base-headers';
+import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
+import 'rxjs/add/operator/toPromise';
 
-interface User {
+interface LoginData {
   username: string;
-  passHash: string;
   authKey: string;
 }
 
 @Injectable()
 export class UsersService {
-  users: User[] = [
-    { username: 'pesho', passHash: 'asd123', authKey: 'fwefbqwekfwpqkbppo' },
-    { username: 'ivan', passHash: 'asd123', authKey: 'nrqwernqwtwmtewmtq' },
-    { username: 'admin', passHash: 'asd123', authKey: 'twqwnernqwrneqwqw' },
-    { username: 'gosho', passHash: 'asd123', authKey: 'brweqtasdtmasttmsad' },
-    { username: 'tosho', passHash: 'asd123', authKey: 'rbebrqwrqwerwqrqrew' }
-  ];
 
-  constructor() { }
+  constructor(private http: Http, private baseHeaders: BaseHeaders) { }
 
-  login(data) {
-    return new Promise<User>((resolve, reject) => {
-      resolve(this.users.find(user => user.username === data.username));
-    });
+  login(user) {
+    return this.http.put('http://localhost:8080/users/auth', user)
+      .toPromise();
   }
 
   register(user) {
-    if (this.users.find(u => u.username === user.username)) {
-      throw new Error('Username already exist');
-    }
-    if (this.users.find(u => u.passHash === user.passHash)) {
-      throw new Error('Password already exist');
-    }
+    return this.http.post('http://localhost:8080/users', user)
+      .toPromise();
+  }
 
-    return new Promise<any>((resolve, reject) => {
-      resolve(this.users.push(user));
-    });
+  ownProfile() {
+    return this.http.get('http://localhost:8080/users', {
+        headers: this.baseHeaders.get(),
+      })
+      .toPromise();
   }
 }

@@ -4,16 +4,16 @@ const Post = require('./post.model');
 const threadsData = (db) => {
   const threadDb = db.collection('threads');
 
-  const getThreads = (category, perPage, pageIndex) => {
+  const getThreads = () => {
     return new Promise((resolve, reject) => {
-      threadDb.find({ category })
+      threadDb.find({})
         .toArray((err, res) => {
           if (err) {
             return reject(err);
           }
-          const startIndex = (pageIndex - 1) * perPage || 0;
-          const endIndex = startIndex + perPage || res.length;
-          return resolve(res.slice(startIndex, endIndex));
+          // const startIndex = (pageIndex - 1) * perPage || 0;
+          // const endIndex = startIndex + perPage || res.length;
+          return resolve(res);
         });
     });
   };

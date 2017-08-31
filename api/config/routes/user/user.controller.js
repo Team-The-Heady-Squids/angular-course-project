@@ -6,19 +6,14 @@ const controller = (data) => {
       .then((newUser) => {
         const username = newUser.username;
         const authKey = newUser.authKey;
-        req.login(newUser, (err) => {
-          if (err) {
-            next(err);
-          }
-          return res.status(200)
-            .json({
-              msg: `Successfuly registered and logged in as ${username}!`,
-              user: {
-                username,
-                authKey,
-              },
-            });
-        });
+        return res.status(200)
+          .json({
+            msg: `Successfuly registered and logged in as ${username}!`,
+            user: {
+              username,
+              authKey,
+            },
+          });
       })
       .catch((err) => {
         next(err);
@@ -26,15 +21,21 @@ const controller = (data) => {
   };
 
   const loginUser = (req, res, next) => {
-    const username = req.user.username;
-    const authKey = req.user.authKey;
-    return res.status(200)
-      .json({
-        msg: `Successfuly logged in as ${username}!`,
-        user: {
-          username,
-          authKey,
-        },
+    return data.user.loginUser(req.body)
+      .then((user) => {
+        const username = user.username;
+        const authKey = user.authKey;
+        return res.status(200)
+          .json({
+            msg: `Successfuly logged in as ${username}!`,
+            user: {
+              username,
+              authKey,
+            },
+          });
+      })
+      .catch((err) => {
+        next(err);
       });
   };
 

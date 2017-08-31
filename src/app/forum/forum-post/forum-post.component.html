@@ -1,4 +1,4 @@
 <hr>
-<p>Author: {{post.author}}</p>
-<p>{{post.created}}</p>
+<p>Author: <a [routerLink]="[ '/users', post.author ]">{{post.author}}</a></p>
+<p>{{post.created | date:'medium'}}</p>
 <p>{{post.content}}</p>

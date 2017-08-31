@@ -1,4 +1,4 @@
-module.exports = (app, data, passport) => {
+module.exports = (app, data) => {
   require('./thread')(app, data);
-  require('./user')(app, data, passport);
+  require('./user')(app, data);
 };

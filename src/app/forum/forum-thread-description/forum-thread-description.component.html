@@ -1,4 +1,4 @@
 <hr>
-<a [routerLink]="[ '/forum', forumThread.id ]">{{forumThread.title}}</a>
+<h3><a [routerLink]="[ '/forum', forumThread.id ]">{{forumThread.title}}</a></h3>
 <p>Author: {{forumThread.author}}</p>
-<p>Created: {{forumThread.created}}</p>
+<p>Created: {{forumThread.created | date:'medium'}}</p>

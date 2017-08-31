@@ -1,5 +1,7 @@
 <h1>{{forumThread.title}}</h1>
-<app-forum-post [post]="forumThread.originalPost"></app-forum-post>
+<p>Author: <a [routerLink]="[ '/users', forumThread.author ]">{{forumThread.author}}</a></p>
+<p>{{forumThread.created | date:'medium'}}</p>
+<p>{{forumThread.originalPost.content}}</p>
 <ul>
   <li *ngFor="let post of forumThread.posts">
     <app-forum-post [post]="post"></app-forum-post>

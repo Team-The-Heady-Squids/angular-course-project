@@ -13,7 +13,7 @@ export class ForumViewComponent implements OnInit {
   ngOnInit() {
     this.forumService.getThreads()
       .then((forumThreads) => {
-        this.forumThreads = forumThreads;
+        this.forumThreads = forumThreads.json();
       });
   }
 
