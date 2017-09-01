@@ -1,5 +1,25 @@
 <h1>Login</h1>
-
-<input type="text" placeholder="Username" [(ngModel)]="username">
-<input type="password" placeholder="Password" [(ngModel)]="password">
-<input type="button" (click)="login();" value="Login">
+<form class="text-center"
+      (ngSubmit)="login(loginForm.value);"
+      #loginForm=ngForm
+      novalidate>
+  <div>
+    <input  type="text"
+            name="username"
+            placeholder="Username"
+            (ngModel)="username"
+            #username=ngModel
+            required>
+    <span class="field-required" *ngIf="!username.valid">!</span>
+  </div>
+  <div>
+    <input  type="password"
+            name="passHash"
+            placeholder="Password"
+            (ngModel)="passHash"
+            #password=ngModel
+            required>
+    <span class="field-required" *ngIf="!password.valid">!</span>
+  </div>
+  <input type="submit" value="Login">
+</form>

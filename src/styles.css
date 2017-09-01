@@ -2,3 +2,9 @@
 .large {
   font-size: 40px;
 }
+
+.field-required {
+  color: lightcoral;
+  font-size: 120%;
+  padding: 0px 20px;
+}

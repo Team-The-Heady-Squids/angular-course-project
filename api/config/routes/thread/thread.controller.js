@@ -5,7 +5,7 @@ const controller = (data) => {
     data.thread.getThreads()
       .then((result) => {
         res.status(200)
-          .json(result);
+          .json(result.sort((x, y) => x.created + y.created));
       });
   };
 
@@ -34,7 +34,7 @@ const controller = (data) => {
         res.status(200)
           .json({
             msg: 'Successfuly created thread!',
-            result: newThread,
+            id: newThread.id,
           });
       })
       .catch((err) => {

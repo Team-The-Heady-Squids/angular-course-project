@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { ForumService } from './../../_core/forum-service/forum.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +8,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./forum-thread-create.component.css']
 })
 export class ForumThreadCreateComponent implements OnInit {
+  title;
+  content;
+  category;
 
-  constructor() { }
+  constructor(private router: Router, private forumService: ForumService) { }
 
   ngOnInit() {
   }
 
+  createThread(threadData) {
+    this.forumService.createThread(threadData)
+      .then((response) => {
+        const id = response.json().id;
+        this.router.navigateByUrl(`/forum/${id}`);
+      })
+      .catch((err) => {
+        console.log(err.json().msg);
+      });
+  }
 }

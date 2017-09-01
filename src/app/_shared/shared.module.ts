@@ -12,13 +12,13 @@ import { NotFoundComponent } from './not-found/not-found.component';
   ],
   declarations: [
     ZoomInTextDirective,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   exports: [
     CommonModule,
     FormsModule,
     NotFoundComponent,
-    ZoomInTextDirective
+    ZoomInTextDirective,
   ]
 })
 export class SharedModule { }

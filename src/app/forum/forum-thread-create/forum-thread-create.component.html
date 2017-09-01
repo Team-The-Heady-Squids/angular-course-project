@@ -1,3 +1,13 @@
-<p>
-  forum-thread-create works!
-</p>
+<h1>New thread</h1>
+<form class="text-center" (ngSubmit)="createThread(threadForm.value);" #threadForm=ngForm>
+  <div>
+    <input type="text" name="title" placeholder="Title" (ngModel)="title">
+  </div>
+  <div>
+    <input type="text" name="content" placeholder="Content" (ngModel)="content"> 
+  </div>
+  <div>
+    <input type="text" name="category" placeholder="Category" (ngModel)="category">
+  </div>
+  <input type="submit" value="Create thread">
+</form>

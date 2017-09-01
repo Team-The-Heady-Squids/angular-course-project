@@ -10,21 +10,20 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   username;
-  password;
+  passHash;
 
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  login() {
-    const user = {
-      username: this.username,
-      passHash: this.password
-    };
+  login(user) {
     this.authService.login(user)
       .then(() => {
         this.router.navigateByUrl('/home');
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }
 }

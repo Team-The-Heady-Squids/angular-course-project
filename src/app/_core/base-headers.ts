@@ -4,11 +4,12 @@ import { Headers } from '@angular/http';
 export class BaseHeaders {
   headers = new Headers();
 
-  constructor() {}
-
-  get() {
+  constructor() {
     const authKey = localStorage.getItem('token');
     this.headers.append('X-Auth-Key', authKey);
+  }
+
+  get() {
     return this.headers;
   }
 }
