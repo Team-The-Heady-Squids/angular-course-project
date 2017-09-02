@@ -20,15 +20,15 @@ export class RegisterComponent implements OnInit {
     if (data.username === undefined || data.passHash === undefined) {
       throw new Error('Username or Password must not be empty');
     }
-    if (3 > data.username || data.username > 20) {
+    if (3 >= data.username && data.username > 20) {
       throw new Error('Username must be between 3 and 20 symbols long');
     }
-    if (6 > data.passHash || data.passHash > 20) {
+    if (6 > data.passHash && data.passHash > 20) {
       throw new Error('Password must be between 6 and 20 symbols long');
     }
 
     this.auth.register(data)
-      .then(() => {
+      .subscribe(() => {
         this.router.navigateByUrl('/home');
       });
     // console.log(this.username, this.password);

@@ -10,23 +10,13 @@ interface LoginData {
 
 @Injectable()
 export class UsersService {
-
+  private connectionURL = 'http://localhost:8080/users';
   constructor(private http: Http, private baseHeaders: BaseHeaders) { }
 
-  login(user) {
-    return this.http.put('http://localhost:8080/users/auth', user)
-      .toPromise();
-  }
-
-  register(user) {
-    return this.http.post('http://localhost:8080/users', user)
-      .toPromise();
-  }
-
   ownProfile() {
-    return this.http.get('http://localhost:8080/users', {
-        headers: this.baseHeaders.get(),
-      })
+    return this.http.get(this.connectionURL, {
+      headers: this.baseHeaders.get(),
+    })
       .toPromise();
   }
 }

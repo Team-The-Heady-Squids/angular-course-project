@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+
+
+import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/catch';
 
 import { AuthService } from './../../_core/auth-service/index';
 import { Router } from '@angular/router';
@@ -19,11 +25,8 @@ export class LoginComponent implements OnInit {
 
   login(user) {
     this.authService.login(user)
-      .then(() => {
-        this.router.navigateByUrl('/home');
-      })
-      .catch((err) => {
-        console.log(err);
+      .subscribe(() => {
+        this.router.navigateByUrl(`/home`);
       });
   }
 }
