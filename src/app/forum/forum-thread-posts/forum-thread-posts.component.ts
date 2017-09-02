@@ -12,26 +12,13 @@ import { IForumThread } from './../../model/forumThread.model';
 export class ForumThreadPostsComponent implements OnInit {
   forumThread: IForumThread;
 
-  // forumThread = {
-  //   author: '',
-  //   title: '',
-  //   id: '',
-  //   originalPost: {
-  //     content: '',
-  //   },
-  //   posts: [],
-  //   created: '',
-  // };
-
   constructor(private forumService: ForumService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    const id = this.route.snapshot.params['id'];
+    this.forumThread = this.route.snapshot.data['thread'];
+  }
 
-    this.forumService.getById(id)
-      .subscribe((forumThread) => {
-        this.forumThread = forumThread;
-        console.log(this.forumThread);
-      });
+  appendPost(event) {
+    this.forumThread.posts.push(event.post);
   }
 }

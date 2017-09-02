@@ -11,6 +11,8 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 
 import { IThread } from './../../model/thread.model';
+import { IForumPost } from './../../model/forumPost.model';
+
 
 @Injectable()
 export class ForumService {
@@ -30,6 +32,14 @@ export class ForumService {
       headers: this.baseHeaders.get(),
     })
       .map(response => response.json() as IThread[])
+      .catch(this.handleErrors);
+  }
+
+  createPost(postData, threadId) {
+    return this.http.post(`${this.connectionURL}/${threadId}`, postData, {
+        headers: this.baseHeaders.get(),
+      })
+      .map((response) => response.json() as IForumPost)
       .catch(this.handleErrors);
   }
 

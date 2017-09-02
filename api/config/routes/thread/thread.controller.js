@@ -83,7 +83,7 @@ const controller = (data) => {
         res.status(200)
           .json({
             msg: 'Successfuly created post!',
-            data: result,
+            post: result,
           });
       })
       .catch((err) => {

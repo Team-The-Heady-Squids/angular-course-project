@@ -78,7 +78,7 @@ const threadsData = (db) => {
           if (err) {
             return reject(err);
           }
-          return resolve('Successfuly created post!');
+          return resolve(newPost);
         });
     });
   };

@@ -1,3 +1,4 @@
+import { UserProfileResolver } from './user-profile-resolver.service';
 import { SharedModule } from './../_shared/shared.module';
 import { NgModule } from '@angular/core';
 import { UserRoutingModule } from './user-routing.module';
@@ -16,6 +17,8 @@ import { ProfileComponent } from './profile/profile.component';
     RegisterComponent,
     ProfileComponent
   ],
-  providers: []
+  providers: [
+    UserProfileResolver
+  ]
 })
 export class UserModule { }

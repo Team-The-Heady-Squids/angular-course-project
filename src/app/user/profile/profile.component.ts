@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { UsersService } from './../../_core/users-service/users.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,14 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
   profile;
-  constructor(private userService: UsersService) { }
+  constructor(private userService: UsersService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.userService.ownProfile()
-      .then((response) => {
-        this.profile = response.json();
-        console.log(this.profile);
-      });
+    this.profile = this.route.snapshot.data['profile'];
   }
 
 }

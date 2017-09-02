@@ -1,3 +1,4 @@
+import { UserProfileResolver } from './user-profile-resolver.service';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -12,7 +13,10 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent, canActivate: [NotLoggedInGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [NotLoggedInGuard] },
-  { path: 'profile', component: ProfileComponent, canActivate: [LoggedInGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [LoggedInGuard], resolve: {
+      'profile': UserProfileResolver
+    }
+  },
 ];
 
 @NgModule({

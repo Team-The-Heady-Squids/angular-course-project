@@ -2,6 +2,7 @@
 <p>Author: <a [routerLink]="[ '/users', forumThread.author ]">{{forumThread.author}}</a></p>
 <p>{{forumThread.created | date:'medium'}}</p>
 <p>{{forumThread.originalPost.content}}</p>
+<app-forum-post-create [threadId]="forumThread.id" (postCreated)="appendPost($event)"></app-forum-post-create>
 <ul>
   <li *ngFor="let post of forumThread.posts">
     <app-forum-post [post]="post"></app-forum-post>

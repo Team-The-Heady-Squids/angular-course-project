@@ -1,3 +1,4 @@
+import { ForumThreadResolver } from './forum-thread-resolver.service';
 import { SharedModule } from './../_shared/shared.module';
 import { ForumRoutingModule } from './forum-routing.module';
 import { NgModule } from '@angular/core';
@@ -6,6 +7,7 @@ import { ForumThreadDescriptionComponent } from './forum-thread-description/foru
 import { ForumThreadPostsComponent } from './forum-thread-posts/forum-thread-posts.component';
 import { ForumThreadCreateComponent } from './forum-thread-create/forum-thread-create.component';
 import { ForumPostComponent } from './forum-post/forum-post.component';
+import { ForumPostCreateComponent } from './forum-post-create/forum-post-create.component';
 
 @NgModule({
   imports: [
@@ -17,7 +19,11 @@ import { ForumPostComponent } from './forum-post/forum-post.component';
     ForumThreadDescriptionComponent,
     ForumThreadPostsComponent,
     ForumThreadCreateComponent,
-    ForumPostComponent
+    ForumPostComponent,
+    ForumPostCreateComponent
+  ],
+  providers: [
+    ForumThreadResolver
   ]
 })
 export class ForumModule { }
