@@ -1,3 +1,5 @@
+import { NotLoggedInGuard } from './_guards/not-logged-in-guard/not-logged-in-guard.service';
+import { LoggedInGuard } from './_guards/logged-in-guard/logged-in-guard.service';
 import { AlertService } from './alert-service/alert.service';
 import { BaseHeaders } from './base-headers';
 import { NgModule } from '@angular/core';
@@ -16,6 +18,8 @@ import { LoggerService } from './logger-service/index';
     AuthService,
     LoggerService,
     AlertService,
+    LoggedInGuard,
+    NotLoggedInGuard,
     BaseHeaders
   ]
 })

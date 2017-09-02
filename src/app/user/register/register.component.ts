@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
 
     this.auth.register(data)
       .then(() => {
-        this.router.navigate(['../users/login']);
+        this.router.navigateByUrl('/home');
       });
     // console.log(this.username, this.password);
   }

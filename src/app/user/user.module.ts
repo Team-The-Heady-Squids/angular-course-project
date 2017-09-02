@@ -1,4 +1,3 @@
-import { ProfileGuard } from './profile/profile-guard.service';
 import { SharedModule } from './../_shared/shared.module';
 import { NgModule } from '@angular/core';
 import { UserRoutingModule } from './user-routing.module';
@@ -17,8 +16,6 @@ import { ProfileComponent } from './profile/profile.component';
     RegisterComponent,
     ProfileComponent
   ],
-  providers: [
-    ProfileGuard
-  ]
+  providers: []
 })
 export class UserModule { }
