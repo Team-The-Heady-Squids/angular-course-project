@@ -19,9 +19,8 @@ export class ForumThreadCreateComponent implements OnInit {
 
   createThread(threadData) {
     this.forumService.createThread(threadData)
-      .then((response) => {
-        const id = response.json().id;
-        console.log(id);
+      .subscribe((response) => {
+        const id = response.id;
 
         this.router.navigateByUrl(`/forum/${id}`);
       });

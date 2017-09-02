@@ -29,9 +29,8 @@ export class ForumService {
     return this.http.post(this.connectionURL, threadData, {
       headers: this.baseHeaders.get(),
     })
-      // .map(response => response.json() as IThread[])
-      // .catch(this.handleErrors);
-      .toPromise();
+      .map(response => response.json() as IThread[])
+      .catch(this.handleErrors);
   }
 
   getById(id: number): Observable<IForumThread> {
