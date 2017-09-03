@@ -1,4 +1,3 @@
-import { AlertService } from './../alert-service/alert.service';
 // import { UsersService } from './../users-service/index';
 // import { LoggerService } from './../logger-service/index';
 import { Injectable } from '@angular/core';
@@ -18,13 +17,12 @@ export class AuthService {
   private connectionURL = 'http://localhost:8080/users';
 
   constructor(
-    private http: Http,
-    private alert: AlertService) { }
+    private http: Http) { }
 
   writeToLocalStorage(data) {
     localStorage.setItem('username', data['username']);
     localStorage.setItem('token', data['authKey']);
-    window.location.reload();
+    // window.location.reload();
 
     return Observable.create(); // returns new Observable
   }
@@ -37,9 +35,8 @@ export class AuthService {
         const match = response['user'];
         const msg = response['msg'];
 
-        this.alert.msg(msg);
-
-        return this.writeToLocalStorage(match);
+        this.writeToLocalStorage(match);
+        return msg;
       });
     // .catch((error) =>
     //   console.error('Error has ocurred', error));
@@ -53,15 +50,13 @@ export class AuthService {
         const match = response['user'];
         const msg = response['msg'];
 
-        this.alert.msg(msg);
-
-        return this.writeToLocalStorage(match);
+        this.writeToLocalStorage(match);
+        return msg;
       });
   }
 
   logout() {
     localStorage.clear();
-    window.location.reload();
   }
 
   current() {

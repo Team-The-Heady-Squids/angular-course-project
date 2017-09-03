@@ -1,3 +1,4 @@
+import { ToastsManager } from 'ng2-toastr';
 import { ForumService } from './../../_core/forum-service/forum.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
@@ -14,7 +15,8 @@ export class ForumPostCreateComponent implements OnInit {
 
   content;
 
-  constructor(private forumService: ForumService) { }
+  constructor(private forumService: ForumService,
+    private toastr: ToastsManager) { }
 
   ngOnInit() {
   }
@@ -22,6 +24,7 @@ export class ForumPostCreateComponent implements OnInit {
   createPost(postData) {
     this.forumService.createPost(postData, this.threadId)
       .subscribe((post) => {
+        this.toastr.success('Successfuly created post!');
         this.postCreated.emit(post);
       });
   }

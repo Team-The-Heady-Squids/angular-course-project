@@ -1,3 +1,4 @@
+import { ToastsManager } from 'ng2-toastr';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
@@ -18,14 +19,17 @@ export class LoginComponent implements OnInit {
   username;
   passHash;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService,
+    private router: Router,
+    private toastr: ToastsManager) { }
 
   ngOnInit() {
   }
 
   login(user) {
     this.authService.login(user)
-      .subscribe(() => {
+      .subscribe((msg) => {
+        this.toastr.success(msg);
         this.router.navigateByUrl(`/home`);
       });
   }

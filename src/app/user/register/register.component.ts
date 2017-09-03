@@ -1,3 +1,4 @@
+import { ToastsManager } from 'ng2-toastr';
 import { Router } from '@angular/router';
 import { AuthService } from './../../_core/auth-service/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,25 +11,32 @@ import { Component, OnInit } from '@angular/core';
 export class RegisterComponent implements OnInit {
   username;
   passHash;
+  passHashRepeat;
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService,
+    private router: Router,
+    private toastr: ToastsManager) { }
 
   ngOnInit() {
   }
 
   register(data) {
-    if (data.username === undefined || data.passHash === undefined) {
-      throw new Error('Username or Password must not be empty');
+    if (!data.username || !data.passHash || !data.passHashRepeat) {
+      return this.toastr.error('Username or Password must not be empty');
     }
-    if (3 >= data.username && data.username > 20) {
-      throw new Error('Username must be between 3 and 20 symbols long');
+    if (data.passHash !== data.passHashRepeat) {
+      return this.toastr.error('Passwords must match!');
     }
-    if (6 > data.passHash && data.passHash > 20) {
-      throw new Error('Password must be between 6 and 20 symbols long');
+    if (3 >= data.username.length && data.username.length > 20) {
+      return this.toastr.error('Username must be between 3 and 20 symbols long');
+    }
+    if (6 > data.passHash.length && data.passHash.length > 20) {
+      return this.toastr.error('Password must be between 6 and 20 symbols long');
     }
 
     this.auth.register(data)
-      .subscribe(() => {
+      .subscribe((msg) => {
+        this.toastr.success(msg);
         this.router.navigateByUrl('/home');
       });
     // console.log(this.username, this.password);

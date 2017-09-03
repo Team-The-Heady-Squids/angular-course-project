@@ -1,3 +1,4 @@
+import { ToastsManager } from 'ng2-toastr';
 import { Router } from '@angular/router';
 import { ForumService } from './../../_core/forum-service/forum.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,7 +13,9 @@ export class ForumThreadCreateComponent implements OnInit {
   content;
   category;
 
-  constructor(private router: Router, private forumService: ForumService) { }
+  constructor(private router: Router,
+    private forumService: ForumService,
+    private toastr: ToastsManager) { }
 
   ngOnInit() {
   }
@@ -21,7 +24,7 @@ export class ForumThreadCreateComponent implements OnInit {
     this.forumService.createThread(threadData)
       .subscribe((response) => {
         const id = response.id;
-
+        this.toastr.success('Successfuly created thread!');
         this.router.navigateByUrl(`/forum/${id}`);
       });
   }
