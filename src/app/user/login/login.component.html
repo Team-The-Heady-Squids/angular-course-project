@@ -1,25 +1,35 @@
-<h1>Login</h1>
-<form class="text-center"
-      (ngSubmit)="login(loginForm.value);"
-      #loginForm=ngForm
-      novalidate>
-  <div>
-    <input  type="text"
-            name="username"
-            placeholder="Username"
-            (ngModel)="username"
-            #username=ngModel
-            required>
-    <span class="field-required" *ngIf="!username.valid">!</span>
-  </div>
-  <div>
-    <input  type="password"
-            name="passHash"
-            placeholder="Password"
-            (ngModel)="passHash"
-            #password=ngModel
-            required>
-    <span class="field-required" *ngIf="!password.valid">!</span>
-  </div>
-  <input type="submit" value="Login">
-</form>
+<h1 class="text-center">Login</h1>
+<div class="row">
+  <div class="col-md-4"></div>
+  <form class="text-center col-md-4"
+        (ngSubmit)="login(loginData.value);"
+        [formGroup]="loginForm"
+        #loginData=ngForm
+        novalidate>
+    <div class="form-group">
+      <input  class="form-control"
+              type="text"
+              name="username"
+              placeholder="Username"
+              formControlName="username">
+      <span class="field-required"
+            *ngIf="!username.valid && username.touched || mouseover">
+        Username must be between {{usernameField.minLength}} and {{usernameField.maxLength}} symbols long!
+      </span>
+    </div>
+    <div class="form-group">
+      <input  class="form-control"
+              type="password"
+              name="passHash"
+              placeholder="Password"
+              formControlName="passHash">
+      <span class="field-required"
+      *ngIf="!passHash.valid && passHash.touched || mouseover">
+        Password must be between {{passHashField.minLength}} and {{passHashField.maxLength}} symbols long!
+      </span>
+    </div>
+    <span (mouseenter)="mouseover=true">
+      <input type="submit" class="btn btn-sm btn-success" [disabled]="!loginData.valid" value="Login">
+    </span>
+  </form>
+</div>
