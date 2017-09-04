@@ -87,7 +87,7 @@ const threadsData = (db) => {
     const { author, newContent, threadId, postId } = options;
     return new Promise((resolve, reject) => {
       return threadDb
-        .updateOne({
+        .findOneAndUpdate({
           id: threadId,
           'posts.id': postId,
           'posts.author': author,
@@ -95,14 +95,17 @@ const threadsData = (db) => {
         {
           $set: { 'posts.$.content': newContent },
         },
-        (err, operation) => {
-          if (operation.result.nModified === 0) {
-            return reject(new Error('Cannot edit post!'));
-          }
+        (err, result) => {
           if (err) {
             return reject(err);
           }
-          return resolve('Successfuly edited post!');
+          threadDb
+            .findOne({ id: threadId }, (findErr, thread) => {
+              if (findErr) {
+                return reject(findErr);
+              }
+              return resolve(thread);
+            });
         });
     });
   };
@@ -120,7 +123,13 @@ const threadsData = (db) => {
             if (err) {
               return reject(err);
             }
-            return resolve('Successfuly deleted post!');
+            threadDb
+              .findOne({ id: threadId }, (findErr, thread) => {
+                if (findErr) {
+                  return reject(findErr);
+                }
+                return resolve(thread);
+              });
           });
     });
   };

@@ -1,4 +1,18 @@
-<hr>
-<p>Author: <a [routerLink]="[ '/users', post.author ]">{{post.author}}</a></p>
-<p>{{post.created | date:'medium'}}</p>
-<p>{{post.content}}</p>
+<div>
+  <hr>
+  <p>Author: <a [routerLink]="[ '/users', post.author ]">{{post.author}}</a></p>
+  <p>{{post.created | date:'medium'}}</p>
+  <p>{{post.content}}</p>
+</div>
+<div>
+  <input type="button" (click)="toggleControls()" value="Show controls">
+  <div class="hidden" #controls>
+    <form (ngSubmit)="editPost(editForm.value)" #editForm=ngForm>
+      <div>
+        <input type="text" name="content" placeholder="New content" (ngModel)="content">
+      </div>
+      <input type="submit" value="Edit post">
+    </form>
+    <input type="button" value="Delete post" (click)="deletePost()">
+  </div>
+</div>

@@ -5,6 +5,8 @@
 <app-forum-post-create [threadId]="forumThread.id" (postCreated)="appendPost($event)"></app-forum-post-create>
 <ul>
   <li *ngFor="let post of forumThread.posts">
-    <app-forum-post [post]="post"></app-forum-post>
+    <app-forum-post [post]="post"
+                    [threadId]="forumThread.id"
+                    (postEdited)="updateThread($event)"></app-forum-post>
   </li>
 </ul>

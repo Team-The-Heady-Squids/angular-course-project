@@ -3,6 +3,10 @@
   font-size: 40px;
 }
 
+.hidden {
+  display: none;
+}
+
 .field-required {
   color: lightcoral;
   font-size: 120%;
