@@ -1,4 +1,9 @@
-<hr>
-<h3><a [routerLink]="[ '/forum', forumThread.id ]">{{forumThread.title}}</a></h3>
-<p>Author: {{forumThread.author}}</p>
-<p>Created: {{forumThread.created | date:'medium'}}</p>
+<div class="well well-sm row">
+  <div class="col-md-6 text-left">
+    <h4><a [routerLink]="[ '/forum', forumThread.id ]">{{forumThread.title | reduceTextLength: 20}}</a></h4>
+    <p>Original post: {{forumThread.originalPost.content | reduceTextLength: 20}}</p>
+  </div>
+  <div class="col-md-6 text-right">
+    <p>Author: <a [routerLink]="[ '/users', forumThread.author ]">{{forumThread.author}}</a></p>
+    <p>Created: {{forumThread.created | date:'medium'}}</p> 
+  </div>

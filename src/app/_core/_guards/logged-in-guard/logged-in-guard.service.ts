@@ -1,4 +1,4 @@
-import { AlertService } from './../../alert-service/alert.service';
+import { ToastsManager } from 'ng2-toastr';
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from '../../auth-service/index';
@@ -8,14 +8,13 @@ export class LoggedInGuard implements CanActivate {
 
   constructor(private authService: AuthService,
       private router: Router,
-      private alertService: AlertService) { }
+      private toastr: ToastsManager) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const currentUser = this.authService.current();
 
     if (!currentUser) {
-      this.alertService.msg('You are not logged in!');
-      this.router.navigateByUrl('/home');
+      this.toastr.error('You are not logged in!');
     }
 
     return !!currentUser;

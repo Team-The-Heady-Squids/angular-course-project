@@ -1,26 +1,29 @@
-<div>
-  <hr>
-  <p>Author: <a [routerLink]="[ '/users', post.author ]">{{post.author}}</a></p>
-  <p>{{post.created | date:'medium'}}</p>
-  <p>{{post.content}}</p>
-</div>
-<div>
-  <input  type="button"
-          (click)="controlsCollapsed=!controlsCollapsed"
-          value="Show controls">
-  <div *ngIf="!controlsCollapsed">
-    <form (ngSubmit)="editPost(editForm.value)" #editForm=ngForm>
-      <div>
-        <input  type="text"
-                name="content"
-                placeholder="New content"
-                (ngModel)="content">
-      </div>
-      <input  type="submit"
-              value="Edit post">
-    </form>
+<div class="row">
+  <div class="col-md-4">
+    <p>Author: <a [routerLink]="[ '/users', post.author ]">{{post.author}}</a></p>
+    <p>{{post.created | date:'medium'}}</p>
+    <p>{{post.content}}</p>
+    <hr>
+  </div>
+  <div  *ngIf="currentUser && currentUser === post.author"
+        class="col-md-4">
     <input  type="button"
-            value="Delete post"
-            (click)="deletePost()">
+            (click)="controlsCollapsed=!controlsCollapsed"
+            value="Show controls">
+    <div *ngIf="!controlsCollapsed">
+      <form (ngSubmit)="editPost(editForm.value)" #editForm=ngForm>
+        <div>
+          <input  type="text"
+                  name="content"
+                  placeholder="New content"
+                  (ngModel)="content">
+        </div>
+        <input  type="submit"
+                value="Edit post">
+      </form>
+      <input  type="button"
+              value="Delete post"
+              (click)="deletePost()">
+    </div>
   </div>
 </div>

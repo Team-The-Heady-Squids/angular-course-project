@@ -1,3 +1,4 @@
+import { AuthService } from './../../_core/auth-service/auth.service';
 import { ForumService } from './../../_core/forum-service/forum.service';
 import {
   Component,
@@ -25,9 +26,13 @@ export class ForumPostComponent implements OnInit {
 
   controlsCollapsed = true;
 
-  constructor(private forumService: ForumService) { }
+  currentUser;
+
+  constructor(private forumService: ForumService,
+    private auth: AuthService) { }
 
   ngOnInit() {
+    this.currentUser = this.auth.current();
   }
 
   editPost(postData) {

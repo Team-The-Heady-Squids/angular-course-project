@@ -28,7 +28,7 @@
         Password must be between {{passHashField.minLength}} and {{passHashField.maxLength}} symbols long!
       </span>
     </div>
-    <span (mouseenter)="mouseover=true">
+    <span (mouseenter)="!loginData.valid ? mouseover=true : mouseover=false">
       <input type="submit" class="btn btn-sm btn-success" [disabled]="!loginData.valid" value="Login">
     </span>
   </form>

@@ -1,11 +1,11 @@
-<div *ngIf="user">
+<div *ngIf="user" class="well well-sm">
   <span>Logged in as</span>
   <a [routerLink]="[ '/users', 'profile' ]">{{user}}</a>
   <span>, </span>
   <a (click)="logout();">logout</a>
 </div>
 
-<div *ngIf="!user">
+<div *ngIf="!user" class="well well-sm">
   <a [routerLink]="[ '/users/login' ]">Login</a>
   <span> or </span>
   <a [routerLink]="[ '/users/register' ]">Register</a>

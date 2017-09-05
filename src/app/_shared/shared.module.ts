@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ZoomInTextDirective } from './zoom-in-text.directive';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ReduceTextLengthPipe } from './reduce-text-length/reduce-text-length.pipe';
 
 @NgModule({
   imports: [
@@ -14,13 +15,15 @@ import { NotFoundComponent } from './not-found/not-found.component';
   declarations: [
     ZoomInTextDirective,
     NotFoundComponent,
+    ReduceTextLengthPipe,
   ],
   exports: [
     CommonModule,
     FormsModule,
     NotFoundComponent,
     ZoomInTextDirective,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ReduceTextLengthPipe
   ]
 })
 export class SharedModule { }

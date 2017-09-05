@@ -1,3 +1,4 @@
+import { UserValidator } from './../user-validator';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastsManager } from 'ng2-toastr';
 import { Component, OnInit } from '@angular/core';
@@ -21,27 +22,8 @@ export class LoginComponent implements OnInit {
   username: FormControl;
   passHash: FormControl;
 
-  usernameField = {
-    minLength: 2,
-    maxLength: 20
-  };
-
-  passHashField = {
-    minLength: 6,
-    maxLength: 40
-  };
-
-  usernameValidators = Validators.compose([
-    Validators.required,
-    Validators.minLength(this.usernameField.minLength),
-    Validators.maxLength(this.usernameField.maxLength)
-  ]);
-
-  passHashValidators = Validators.compose([
-    Validators.required,
-    Validators.minLength(this.passHashField.minLength),
-    Validators.maxLength(this.passHashField.maxLength)
-  ]);
+  usernameField;
+  passHashField;
 
   mouseover = false;
 
@@ -50,8 +32,10 @@ export class LoginComponent implements OnInit {
     private toastr: ToastsManager) { }
 
   ngOnInit() {
-    this.username = new FormControl('', this.usernameValidators);
-    this.passHash = new FormControl('', this.passHashValidators);
+    this.usernameField = UserValidator.usernameField;
+    this.passHashField = UserValidator.passHashField;
+    this.username = new FormControl('', UserValidator.usernameValidators);
+    this.passHash = new FormControl('', UserValidator.passHashValidators);
 
     this.loginForm = new FormGroup({
       username: this.username,

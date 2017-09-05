@@ -1,14 +1,39 @@
-<h1>Register</h1>
+<h1 class="text-center">Register</h1>
 
-<form class="text-center" (ngSubmit)="register(registerForm.value)" #registerForm=ngForm>
-  <div>
-    <input type="text" name="username" placeholder="Username" (ngModel)="username">
-  </div>
-  <div>
-    <input type="password" name="passHash" placeholder="Password" (ngModel)="passHash">
-  </div>
-  <div>
-    <input type="password" name="passHashRepeat" placeholder="Repeat password" (ngModel)="passHashRepeat">
-  </div>
-  <input type="submit" value="Register">
-</form>
+<div class="row">
+  <div class="col-md-4"></div>
+  <form class="col-md-4 text-center"
+        [formGroup]="registerForm"
+        (ngSubmit)="register(registerData.value)"
+        #registerData=ngForm>
+    <div class="form-group">
+      <input  class="form-control"
+              type="text"
+              placeholder="Username"
+              formControlName="username">
+      <span   class="field-required"
+              *ngIf="!username.valid && username.touched || mouseover">
+        Username must be between {{usernameField.minLength}} and {{usernameField.maxLength}} symbols long!
+      </span>
+    </div>
+    <div class="form-group">
+      <input  class="form-control"
+              type="password"
+              placeholder="Password"
+              formControlName="passHash">
+      <span   class="field-required"
+              *ngIf="!passHash.valid && passHash.touched || mouseover">
+        Password must be between {{passHashField.minLength}} and {{passHashField.maxLength}} symbols long!
+      </span>
+    </div>
+    <div class="form-group">
+      <input  class="form-control"
+              type="password"
+              placeholder="Repeat password"
+              formControlName="passHashRepeat">
+    </div>
+    <span (mouseenter)="!loginData.valid ? mouseover=true : mouseover=false">
+      <input type="submit" class="btn btn-sm btn-success" [disabled]="!registerData.valid" value="Register">
+    </span>
+  </form>
+</div>

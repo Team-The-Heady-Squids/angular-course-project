@@ -2,9 +2,12 @@
   <div class="panel-heading">
     <h3 class="panel-title">Forum</h3>
   </div>
-  <a [routerLink]="[ '/forum/create-thread' ]">Create new thread...</a>
-  <div class="panel-body" *ngFor="let forumThread of forumThreads">
-    <app-forum-thread-description [forumThread]="forumThread"></app-forum-thread-description>
+  <div class="panel-body">
+    <a [routerLink]="[ '/forum/create-thread' ]">Create new thread...</a>
+    <hr>
+    <div *ngFor="let forumThread of forumThreads">
+      <app-forum-thread-description [forumThread]="forumThread"></app-forum-thread-description>
+    </div>
   </div>
 </div>
 
