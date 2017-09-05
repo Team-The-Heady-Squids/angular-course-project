@@ -7,3 +7,6 @@
     <p>Author: <a [routerLink]="[ '/users', forumThread.author ]">{{forumThread.author}}</a></p>
     <p>Created: {{forumThread.created | date:'medium'}}</p> 
   </div>
+  <div *ngIf="currentUser && currentUser === forumThread.author">
+    <button (click)="deleteThread()">Delete</button>
+  </div>

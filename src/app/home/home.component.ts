@@ -1,5 +1,5 @@
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Component, OnInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import 'rxjs/add/operator/switchMap';
 
@@ -11,25 +11,18 @@ import { IForumThread } from './../model/forumThread.model';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, AfterContentInit {
+export class HomeComponent implements OnInit {
   private forumThread: IForumThread;
+
   constructor(private forumService: ForumService,
-    private router: Router) { }
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.forumService.getThread()
-      .subscribe(data => this.forumThread = data);
-    console.log(this.forumThread);
-
-  }
-  ngAfterContentInit(): void {
-    // this.forumService.getThread()
-    //   .subscribe(data => this.forumThread = data);
-    // console.log(this.forumThread.originalPost);
+    this.forumThread = this.route.snapshot.data['home'];
   }
 
   goToForumPost() {
     this.router.navigateByUrl(`forum/${this.forumThread.id}`);
-    console.log(this.forumThread);
   }
 }

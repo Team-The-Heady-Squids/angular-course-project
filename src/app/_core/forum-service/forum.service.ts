@@ -65,7 +65,13 @@ export class ForumService {
       .map((response) => response.json() as IForumPost)
       .catch(this.handleErrors);
   }
-
+  deleteThread(threadId) {
+    return this.http.delete(`${this.connectionURL}/${threadId}`, {
+      headers: BaseHeaders.get(),
+    })
+      .map((response) => response.json() as IThread)
+      .catch(this.handleErrors);
+  }
   getPostById(id: number): Observable<IForumThread> {
     return this.http.get(`${this.connectionURL}/${id}`)
       .map(response => response.json() as IThread[])
