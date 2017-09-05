@@ -19,7 +19,7 @@ export class ForumService {
 
   private connectionURL = 'http://localhost:8080/threads';
 
-  constructor(private http: Http, private baseHeaders: BaseHeaders) { }
+  constructor(private http: Http) { }
 
   getThreads(): Observable<IThread[]> {
     return this.http.get(this.connectionURL)
@@ -36,7 +36,7 @@ export class ForumService {
   }
   createThread(threadData: IThread) {
     return this.http.post(this.connectionURL, threadData, {
-      headers: this.baseHeaders.get(),
+      headers: BaseHeaders.get(),
     })
       .map(response => response.json() as IThread[])
       .catch(this.handleErrors);
@@ -44,7 +44,7 @@ export class ForumService {
 
   createPost(postData, threadId) {
     return this.http.post(`${this.connectionURL}/${threadId}`, postData, {
-      headers: this.baseHeaders.get(),
+      headers: BaseHeaders.get(),
     })
       .map((response) => response.json() as IForumPost)
       .catch(this.handleErrors);
@@ -52,7 +52,7 @@ export class ForumService {
 
   editPost(postData, postId, threadId) {
     return this.http.put(`${this.connectionURL}/${threadId}/${postId}`, postData, {
-      headers: this.baseHeaders.get(),
+      headers: BaseHeaders.get(),
     })
       .map((response) => response.json() as IForumPost)
       .catch(this.handleErrors);
@@ -60,7 +60,7 @@ export class ForumService {
 
   deletePost(postId, threadId) {
     return this.http.delete(`${this.connectionURL}/${threadId}/${postId}`, {
-      headers: this.baseHeaders.get(),
+      headers: BaseHeaders.get(),
     })
       .map((response) => response.json() as IForumPost)
       .catch(this.handleErrors);

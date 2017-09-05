@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ToastsManager } from 'ng2-toastr';
 import { AuthService } from './../../_core/auth-service/auth.service';
 import { Component, OnInit, Input } from '@angular/core';
@@ -12,6 +13,7 @@ export class LoginNavComponent implements OnInit {
   user;
 
   constructor(private auth: AuthService,
+    private router: Router,
     private toastr: ToastsManager) { }
 
   ngOnInit() {
@@ -20,5 +22,6 @@ export class LoginNavComponent implements OnInit {
   logout() {
     this.toastr.success('Successfuly logged out!');
     this.auth.logout();
+    this.router.navigateByUrl('/users/login');
   }
 }

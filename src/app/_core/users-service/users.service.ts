@@ -13,11 +13,11 @@ interface ProfileData {
 @Injectable()
 export class UsersService {
   private connectionURL = 'http://localhost:8080/users';
-  constructor(private http: Http, private baseHeaders: BaseHeaders) { }
+  constructor(private http: Http) { }
 
   ownProfile() {
     return this.http.get(this.connectionURL, {
-        headers: this.baseHeaders.get(),
+        headers: BaseHeaders.get(),
       })
       .map((response) => response.json() as ProfileData)
       .catch((err) => {

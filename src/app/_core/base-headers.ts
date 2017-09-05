@@ -2,14 +2,12 @@ import { AuthService } from './auth-service/auth.service';
 import { Headers } from '@angular/http';
 
 export class BaseHeaders {
-  headers = new Headers();
+  constructor() {}
 
-  constructor() {
-    const authKey = localStorage.getItem('token');
-    this.headers.append('X-Auth-Key', authKey);
-  }
-
-  get() {
-    return this.headers;
+  static get() {
+    const headers = new Headers();
+    const authkey = localStorage.getItem('token');
+    headers.append('X-Auth-Key', authkey);
+    return headers;
   }
 }
