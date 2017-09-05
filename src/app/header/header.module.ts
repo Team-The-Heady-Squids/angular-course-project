@@ -1,8 +1,9 @@
-import { SharedModule } from './../_shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { NavComponent } from './nav/nav.component';
+
+import { SharedModule } from './../_shared/shared.module';
 import { LoginNavComponent } from './login-nav/login-nav.component';
+import { HeaderComponent } from './header.component';
 
 @NgModule({
   imports: [
@@ -10,12 +11,12 @@ import { LoginNavComponent } from './login-nav/login-nav.component';
     RouterModule
   ],
   declarations: [
-    NavComponent,
-    LoginNavComponent
+    LoginNavComponent,
+    HeaderComponent
   ],
   exports: [
-    NavComponent,
-    LoginNavComponent
+    LoginNavComponent,
+    HeaderComponent
   ]
 })
 export class HeaderModule { }
