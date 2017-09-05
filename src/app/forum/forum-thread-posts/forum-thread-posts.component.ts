@@ -2,6 +2,7 @@ import { ToastsManager } from 'ng2-toastr';
 import { ForumService } from './../../_core/forum-service/index';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { IForumThread } from './../../model/forumThread.model';
 
@@ -15,6 +16,7 @@ export class ForumThreadPostsComponent implements OnInit {
 
   constructor(private forumService: ForumService,
     private route: ActivatedRoute,
+    private location: Location,
     private toastr: ToastsManager) { }
 
   ngOnInit() {
@@ -28,5 +30,9 @@ export class ForumThreadPostsComponent implements OnInit {
   updateThread(event) {
     this.forumThread = event.data;
     this.toastr.success(event.msg);
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

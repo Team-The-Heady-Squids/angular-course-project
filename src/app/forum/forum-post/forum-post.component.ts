@@ -48,4 +48,5 @@ export class ForumPostComponent implements OnInit {
         this.postEdited.emit(updatedThread);
       });
   }
+
 }

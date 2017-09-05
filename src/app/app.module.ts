@@ -5,11 +5,12 @@ import { HttpModule } from '@angular/http';
 
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
-import { CoreModule } from './_core/core.module';
+import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+
+import { CoreModule } from './_core/core.module';
 import { HeaderModule } from './header/header.module';
 
-import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
