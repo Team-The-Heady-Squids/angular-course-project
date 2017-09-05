@@ -9,8 +9,8 @@
     <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 text-center">
       <div class="jumbotron">
         <!-- <div *ngIf="forumThread"> -->
-        <h1>{{forumThread.title}}</h1>
-        <p>{{forumThread.originalPost.content}}</p>
+        <h1>{{forumThread.title | reduceTextLength:20}}</h1>
+        <p>{{forumThread.originalPost.content | reduceTextLength:20}}</p>
         <!-- </div> -->
         <button class="btn btn-primary btn-lg" type="submit" (click)="goToForumPost()">Read more</button>
       </div>

@@ -58,6 +58,11 @@ export class RegisterComponent implements OnInit {
       .subscribe((msg) => {
         this.toastr.success(msg);
         this.router.navigateByUrl('/home');
+      },
+      (error) => {
+        const err = error.json().msg;
+        console.log(err);
+        this.toastr.error(err);
       });
   }
 }

@@ -15,4 +15,8 @@ export class ForumViewComponent implements OnInit {
       .subscribe((forumThreads) => this.forumThreads = forumThreads);
   }
 
+  removeThread(threadId) {
+    const index = this.forumThreads.findIndex((x) => x.id === threadId);
+    this.forumThreads.splice(index, 1);
+  }
 }

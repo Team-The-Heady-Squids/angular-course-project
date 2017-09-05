@@ -13,7 +13,7 @@ export class ForumThreadDescriptionComponent implements OnInit {
   @Input()
   forumThread;
   @Output()
-  postEdited = new EventEmitter();
+  forumThreadDeleted = new EventEmitter();
 
   constructor(private forumService: ForumService,
     private auth: AuthService) { }
@@ -21,10 +21,11 @@ export class ForumThreadDescriptionComponent implements OnInit {
   ngOnInit() {
     this.currentUser = this.auth.current();
   }
+
   deleteThread() {
     this.forumService.deleteThread(this.forumThread.id)
       .subscribe((updatedThread) => {
-        this.postEdited.emit(updatedThread);
+        this.forumThreadDeleted.emit(this.forumThread.id);
       });
   }
 }

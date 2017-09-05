@@ -48,6 +48,10 @@ export class LoginComponent implements OnInit {
       .subscribe((msg) => {
         this.toastr.success(msg);
         this.router.navigateByUrl(`/home`);
+      },
+      (error) => {
+        const err = error.json().msg;
+        this.toastr.error(err);
       });
   }
 }
