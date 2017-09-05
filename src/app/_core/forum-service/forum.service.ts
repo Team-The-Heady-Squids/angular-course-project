@@ -27,6 +27,13 @@ export class ForumService {
       .catch(this.handleErrors);
   }
 
+  getThread(): Observable<IForumThread> {
+    return this.http.get(this.connectionURL)
+      .map(response => response.json() as IForumThread[])
+      .map(data => data.sort((x, y) => Date.parse(x.created) - Date.parse(y.created)))
+      .map(data => data[data.length - 1])
+      .catch(this.handleErrors);
+  }
   createThread(threadData: IThread) {
     return this.http.post(this.connectionURL, threadData, {
       headers: this.baseHeaders.get(),
@@ -37,29 +44,29 @@ export class ForumService {
 
   createPost(postData, threadId) {
     return this.http.post(`${this.connectionURL}/${threadId}`, postData, {
-        headers: this.baseHeaders.get(),
-      })
+      headers: this.baseHeaders.get(),
+    })
       .map((response) => response.json() as IForumPost)
       .catch(this.handleErrors);
   }
 
   editPost(postData, postId, threadId) {
     return this.http.put(`${this.connectionURL}/${threadId}/${postId}`, postData, {
-        headers: this.baseHeaders.get(),
-      })
+      headers: this.baseHeaders.get(),
+    })
       .map((response) => response.json() as IForumPost)
       .catch(this.handleErrors);
   }
 
   deletePost(postId, threadId) {
     return this.http.delete(`${this.connectionURL}/${threadId}/${postId}`, {
-        headers: this.baseHeaders.get(),
-      })
+      headers: this.baseHeaders.get(),
+    })
       .map((response) => response.json() as IForumPost)
       .catch(this.handleErrors);
   }
 
-  getById(id: number): Observable<IForumThread> {
+  getPostById(id: number): Observable<IForumThread> {
     return this.http.get(`${this.connectionURL}/${id}`)
       .map(response => response.json() as IThread[])
       .catch(this.handleErrors);

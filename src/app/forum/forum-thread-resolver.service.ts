@@ -9,6 +9,6 @@ export class ForumThreadResolver implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const id = route.params['id'];
-    return this.forumService.getById(id);
+    return this.forumService.getPostById(id);
   }
 }
