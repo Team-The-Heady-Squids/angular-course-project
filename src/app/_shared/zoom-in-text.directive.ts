@@ -9,13 +9,13 @@ export class ZoomInTextDirective {
 
   constructor(private el: ElementRef, private render: Renderer2) { }
 
-  @HostListener('mouseenter')
+  @HostListener('click')
   zoomInText() {
-    this.render.addClass(this.el.nativeElement, this.className);
-  }
-
-  @HostListener('mouseleave')
-  zoomOutText() {
-    this.render.removeClass(this.el.nativeElement, this.className);
+    if (this.zoomedIn) {
+      this.render.removeClass(this.el.nativeElement, this.className);
+    } else {
+      this.render.addClass(this.el.nativeElement, this.className);
+    }
+    this.zoomedIn = !this.zoomedIn;
   }
 }

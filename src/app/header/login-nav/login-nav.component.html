@@ -1,8 +1,12 @@
 <li *ngIf="user" class="well well-sm">
-  <span>Logged in as</span>
-  <a [routerLink]="[ '/users', 'profile' ]">{{user}}</a>
-  <span>, </span>
-  <a (click)="logout();">logout</a>
+  <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{user}}
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a [routerLink]="[ '/users', 'profile' ]">Profile</a></li>
+      <li><a (click)="logout();">Logout</a></li>
+    </ul>
+  </div>
 </li>
 
 <li *ngIf="!user" class="well well-sm">

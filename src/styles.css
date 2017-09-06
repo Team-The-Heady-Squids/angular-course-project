@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 .large {
-  font-size: 40px;
+  font-size: 200%;
 }
 
 .hidden {
@@ -11,4 +11,12 @@
   color: lightcoral;
   font-size: 120%;
   padding: 0px 20px;
+}
+
+textarea {
+  resize: none;
+}
+
+.posts-list {
+  list-style-type: none;
 }

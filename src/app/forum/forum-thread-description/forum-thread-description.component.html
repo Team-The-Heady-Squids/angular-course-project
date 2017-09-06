@@ -14,11 +14,12 @@
 
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h4 class="panel-title"><a [routerLink]="[ '/forum', forumThread.id ]">{{forumThread.title | reduceTextLength: 20}}</a></h4>
+    <h4 class="panel-title text-left btn btn-success"><a [routerLink]="[ '/forum', forumThread.id ]">{{forumThread.title | reduceTextLength: 20}}</a></h4>
   </div>
 
   <div class="panel-body">
     <div class="col-md-5 text-left">
+      <p>Posts: {{forumThread.posts.length + 1}}</p>
       <p>Original post: {{forumThread.originalPost.content | reduceTextLength: 20}}</p>
     </div>
 

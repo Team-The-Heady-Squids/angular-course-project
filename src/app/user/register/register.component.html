@@ -32,7 +32,7 @@
               placeholder="Repeat password"
               formControlName="passHashRepeat">
     </div>
-    <span (mouseenter)="!loginData.valid ? mouseover=true : mouseover=false">
+    <span (mouseenter)="!registerData.valid ? mouseover=true : mouseover=false">
       <input type="submit" class="btn btn-sm btn-success" [disabled]="!registerData.valid" value="Register">
     </span>
   </form>

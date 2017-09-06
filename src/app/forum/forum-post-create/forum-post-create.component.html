@@ -1,6 +1,14 @@
-<form (ngSubmit)="createPost(postForm.value)" #postForm=ngForm>
+<hr>
+<form [formGroup]="postForm"
+      (ngSubmit)="createPost(createPostForm.value)"
+      #createPostForm=ngForm>
   <div>
-    <input type="text" name="content" placeholder="content" (ngModel)="content">
+    <textarea placeholder="content"
+              formControlName="content"
+              rows="4"
+              cols="50"></textarea>
+    <span class="field-required"
+          *ngIf="!content.valid && content.touched">Content must be between 2 and 200 symbols long</span>
   </div>
   <input type="submit" value="Create post">
 </form>

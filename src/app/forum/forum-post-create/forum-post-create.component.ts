@@ -1,3 +1,4 @@
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastsManager } from 'ng2-toastr';
 import { ForumService } from './../../_core/forum-service/forum.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
@@ -12,13 +13,23 @@ export class ForumPostCreateComponent implements OnInit {
   postCreated = new EventEmitter();
   @Input()
   threadId;
+  postForm: FormGroup;
 
-  content;
+  content: FormControl;
 
   constructor(private forumService: ForumService,
     private toastr: ToastsManager) { }
 
   ngOnInit() {
+    this.content = new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(200)
+    ]);
+
+    this.postForm = new FormGroup({
+      content: this.content,
+    });
   }
 
   createPost(postData) {
@@ -26,6 +37,9 @@ export class ForumPostCreateComponent implements OnInit {
       .subscribe((post) => {
         this.toastr.success('Successfuly created post!');
         this.postCreated.emit(post);
+      },
+      (error) => {
+        this.toastr.error(error.msg);
       });
   }
 }

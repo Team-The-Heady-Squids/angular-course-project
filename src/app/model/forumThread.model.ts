@@ -4,7 +4,9 @@ export interface IForumThread {
     author: string;
     title: string;
     id: string;
-    originalPost: Array<string>;
+    originalPost: {
+        content: string;
+    };
     posts: Array<IThread>;
     created: string;
 }

@@ -1,14 +1,23 @@
-<h1>{{forumThread.title}}</h1>
-<p>Author: <a [routerLink]="[ '/users', forumThread.author ]">{{forumThread.author}}</a></p>
-<p>{{forumThread.created | date:'medium'}}</p>
-<p>{{forumThread.originalPost.content}}</p>
-<app-forum-post-create [threadId]="forumThread.id" (postCreated)="appendPost($event)"></app-forum-post-create>
-<hr>
-<ul>
-  <li *ngFor="let post of forumThread.posts">
-    <app-forum-post [post]="post"
-                    [threadId]="forumThread.id"
-                    (postEdited)="updateThread($event)"></app-forum-post>
-  </li>
-</ul>
-<button (click)="goBack()">Back</button>
+<div class="row">
+  <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 panel panel-default">
+    <div class="panel-heading">
+      <h1>{{forumThread.title}}</h1>
+    </div>
+    <div class="panel-body">
+      <p>Author: <a [routerLink]="[ '/users', forumThread.author ]">{{forumThread.author}}</a></p>
+      <p>{{forumThread.created | date:'medium'}}</p>
+      <p class="well well-sm">{{forumThread.originalPost.content}}</p>
+      <app-forum-post-create [threadId]="forumThread.id" (postCreated)="appendPost($event)"></app-forum-post-create>
+      <hr>
+      <ul class="posts-list">
+        <li class="posts-item"
+            *ngFor="let post of forumThread.posts">
+          <app-forum-post [post]="post"
+                          [threadId]="forumThread.id"
+                          (postEdited)="updateThread($event)"></app-forum-post>
+        </li>
+      </ul>
+      <button (click)="goBack()">Back</button>
+    </div>
+  </div>
+</div>

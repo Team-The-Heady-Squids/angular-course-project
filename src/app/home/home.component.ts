@@ -12,7 +12,7 @@ import { IForumThread } from './../model/forumThread.model';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  private forumThread: IForumThread;
+  forumThread: IForumThread;
 
   constructor(private forumService: ForumService,
     private router: Router,
