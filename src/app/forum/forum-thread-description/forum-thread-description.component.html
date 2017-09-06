@@ -1,24 +1,10 @@
-<!-- <div class="well well-sm row">
-  <div class="col-md-6 text-left">
-    <h4><a [routerLink]="[ '/forum', forumThread.id ]">{{forumThread.title | reduceTextLength: 20}}</a></h4>
-    <p>Original post: {{forumThread.originalPost.content | reduceTextLength: 20}}</p>
-  </div>
-  <div class="col-md-6 text-right">
-    <p>Author: <a [routerLink]="[ '/users', forumThread.author ]">{{forumThread.author}}</a></p>
-    <p>Created: {{forumThread.created | date:'medium'}}</p>
-  </div>
-  <div *ngIf="currentUser && currentUser === forumThread.author">
-    <button (click)="deleteThread()">Delete</button>
-  </div>
-</div> -->
-
-<div class="panel panel-primary">
+<!-- <div class="panel panel-primary">
   <div class="panel-heading">
     <h4 class="panel-title text-left btn btn-success"><a [routerLink]="[ '/forum', forumThread.id ]">{{forumThread.title | reduceTextLength: 20}}</a></h4>
   </div>
 
   <div class="panel-body">
-    <div class="col-md-5 text-left">
+    <div class="col-md-6 text-left">
       <p>Posts: {{forumThread.posts.length + 1}}</p>
       <p>Original post: {{forumThread.originalPost.content | reduceTextLength: 20}}</p>
     </div>
@@ -29,7 +15,31 @@
     </div>
 
     <div *ngIf="currentUser && currentUser === forumThread.author">
-      <div class="col-md-2 text-right">
+      <div class="col-md-1 text-right">
+        <button class="btn btn-warning" (click)="deleteThread()">Delete</button>
+      </div>
+    </div>
+
+  </div>
+</div> -->
+
+<div class="panel panel-primary">
+  <div class="panel-body">
+    <div class="col-md-4 text-left title-color">
+      <h4 class="panel-title text-center"><a [routerLink]="[ '/forum', forumThread.id ]">Title: {{forumThread.title | reduceTextLength: 20}}</a></h4>
+    </div>
+    <div class="col-md-3 text-right">
+      <p>Posts: {{forumThread.posts.length + 1}}</p>
+      <p>Original post: {{forumThread.originalPost.content | reduceTextLength: 20}}</p>
+    </div>
+
+    <div class="col-md-4 text-right">
+      <p>Author: <a [routerLink]="[ '/users', forumThread.author ]">{{forumThread.author}}</a></p>
+      <p>Created: {{forumThread.created | date:'medium'}}</p>
+    </div>
+
+    <div *ngIf="currentUser && currentUser === forumThread.author">
+      <div class="col-md-1 text-right">
         <button class="btn btn-warning" (click)="deleteThread()">Delete</button>
       </div>
     </div>

@@ -1,23 +1,39 @@
-<div class="row">
+<div class="row style-header">
   <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 panel panel-default">
-    <div class="panel-heading">
-      <h1>{{forumThread.title}}</h1>
+    <!-- <div class="panel-heading text-center">
+      <h1><strong>{{forumThread.title}}</strong></h1>
     </div>
     <div class="panel-body">
       <p>Author: <a [routerLink]="[ '/users', forumThread.author ]">{{forumThread.author}}</a></p>
       <p>{{forumThread.created | date:'medium'}}</p>
       <p class="well well-sm">{{forumThread.originalPost.content}}</p>
-      <app-forum-post-create [threadId]="forumThread.id" (postCreated)="appendPost($event)"></app-forum-post-create>
-      <hr>
-      <ul class="posts-list">
-        <li class="posts-item"
-            *ngFor="let post of forumThread.posts">
-          <app-forum-post [post]="post"
-                          [threadId]="forumThread.id"
-                          (postEdited)="updateThread($event)"></app-forum-post>
-        </li>
-      </ul>
-      <button (click)="goBack()">Back</button>
+      <hr> -->
+
+    <div class="row">
+      <div class="col-sm-3 col-md-3 text-center style-left">
+        <p>Author: <a [routerLink]="[ '/users', forumThread.author ]">{{forumThread.author}}</a></p>
+        <p>{{forumThread.created | date:'medium'}}</p>
+      </div>
+
+      <div class="col-sm-9 col-md-9">
+        <div class="row style-right style-title">
+          <h2><strong>{{forumThread.title}}</strong></h2>
+        </div>
+        <div class="row style-right">
+          <p class="style-text">{{forumThread.originalPost.content}}</p>
+        </div>
+      </div>
     </div>
+    <!--
+    <ul class="posts-list">
+      <li class="posts-item" *ngFor="let post of forumThread.posts">
+        <app-forum-post  *ngFor="let post of forumThread.posts" [post]="post" [threadId]="forumThread.id" (postEdited)="updateThread($event)"></app-forum-post>
+      </li>
+    </ul> -->
+    <app-forum-post *ngFor="let post of forumThread.posts" [post]="post" [threadId]="forumThread.id" (postEdited)="updateThread($event)"></app-forum-post>
+
+    <app-forum-post-create [threadId]="forumThread.id" (postCreated)="appendPost($event)"></app-forum-post-create>
+
+    <button class="btn btn-primary" (click)="goBack()">Back</button>
   </div>
 </div>
