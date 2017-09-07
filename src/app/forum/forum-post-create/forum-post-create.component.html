@@ -2,12 +2,21 @@
 
 <div class="row">
   <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
-    <form [formGroup]="postForm" (ngSubmit)="createPost(createPostForm.value)" #createPostForm=ngForm>
+    <form [formGroup]="postForm"
+          (ngSubmit)="createPost(createPostForm.value)"
+          #createPostForm=ngForm>
       <div>
-        <textarea placeholder="content" formControlName="content" rows="4" cols="50"></textarea>
-        <span class="field-required" *ngIf="!content.valid && content.touched">Content must be between 2 and 200 symbols long</span>
+        <textarea placeholder="content"
+                  formControlName="content"
+                  rows="4"
+                  cols="50"></textarea>
+        <span class="field-required"
+              *ngIf="!content.valid && content.touched">Content must be between 2 and 200 symbols long</span>
       </div>
-      <input class="btn btn-primary" type="submit" value="Create post">
+      <input  class="btn btn-primary"
+              [disabled]="!createPostForm.valid"
+              type="submit"
+              value="Create post">
       
     </form>
     <!-- <button class="btn btn-primary right" (click)="goBack()">Back</button> -->
