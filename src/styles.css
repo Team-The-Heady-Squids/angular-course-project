@@ -20,3 +20,8 @@ textarea {
 .posts-list {
   list-style-type: none;
 }
+
+.absolute {
+  position: absolute;
+  z-index: 5;
+}
