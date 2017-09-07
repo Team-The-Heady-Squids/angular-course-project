@@ -11,11 +11,12 @@
 
 .style-cont {
   height: 130px;
+  margin-bottom: 30px;
 }
 
 .style-left {
   height: 100%;
-  padding: 30px;
+  padding: 10px;
   border: 2px solid #423D3D;
   border-radius: 0px 0px 0px 5px;
 }
