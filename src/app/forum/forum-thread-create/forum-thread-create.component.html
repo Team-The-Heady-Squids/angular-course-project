@@ -1,13 +1,29 @@
-<h1>New thread</h1>
-<form class="text-center" (ngSubmit)="createThread(threadForm.value);" #threadForm=ngForm>
-  <div>
-    <input type="text" name="title" placeholder="Title" (ngModel)="title">
-  </div>
-  <div>
-    <input type="text" name="content" placeholder="Content" (ngModel)="content">
-  </div>
-  <div>
-    <input type="text" name="category" placeholder="Category" (ngModel)="category">
-  </div>
-  <input type="submit" value="Create thread">
-</form>
+<h1 class="text-center">New thread</h1>
+<div class="row">
+  <form class="col-md-4 col-md-offset-4"
+        [formGroup]="threadCreateForm"
+        (ngSubmit)="createThread(threadForm.value);"
+        #threadForm=ngForm>
+    <div class="form-group">
+      <input  class="form-control"
+              type="text"
+              placeholder="Title"
+              formControlName="title">
+    </div>
+    <div class="form-group">
+        <input  class="form-control"
+                type="text"
+              placeholder="Content"
+              formControlName="content">
+    </div>
+    <div class="form-group">
+      <input  class="form-control"
+              type="text"
+              placeholder="Category"
+              formControlName="category">
+    </div>
+    <input  class="btn btn-sm btn-success"
+            type="submit"
+            [disabled]="!threadForm.valid"
+            value="Create thread">
+  </form>

@@ -10,5 +10,8 @@
     <span class="field-required"
           *ngIf="!content.valid && content.touched">Content must be between 2 and 200 symbols long</span>
   </div>
-  <input type="submit" value="Create post">
+  <input  class="btn btn-sm btn-success"
+          type="submit"
+          [disabled]="!createPostForm.valid"
+          value="Create post">
 </form>
