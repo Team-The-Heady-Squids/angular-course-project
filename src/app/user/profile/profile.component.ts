@@ -1,3 +1,4 @@
+import { ToastsManager } from 'ng2-toastr';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { UsersService } from './../../_core/users-service/users.service';
@@ -19,7 +20,9 @@ export class ProfileComponent implements OnInit {
   newPassRepeat: FormControl;
 
   controlsCollapsed = true;
-  constructor(private userService: UsersService, private route: ActivatedRoute) { }
+  constructor(private userService: UsersService,
+    private route: ActivatedRoute,
+    private toastr: ToastsManager) { }
 
   ngOnInit() {
     this.profile = this.route.snapshot.data['profile'];
@@ -34,8 +37,14 @@ export class ProfileComponent implements OnInit {
       newPassHashRepeat: this.newPassRepeat
     });
   }
-  
+
   changePassword(data) {
-    console.log(data);
+    this.userService.changePass(data)
+      .subscribe((response) => {
+        this.toastr.success(response.msg);
+      },
+      (error) => {
+        this.toastr.error(error.msg);
+      });
   }
 }

@@ -24,4 +24,14 @@ export class UsersService {
         return Observable.throw(err.json());
       });
   }
+
+  changePass(passData) {
+    return this.http.put(this.connectionURL, passData, {
+      headers: BaseHeaders.get(),
+    })
+      .map((response) => response.json())
+      .catch((err) => {
+        return Observable.throw(err.json());
+      });
+  }
 }

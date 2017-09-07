@@ -81,7 +81,13 @@ const controller = (data) => {
       return errors.notLoggedIn(next);
     }
     const user = req.user;
-    const newPassHash = req.body.passHash;
+    const { oldPassHash, newPassHash, newPassHashRepeat } = req.body;
+    if (user.passHash !== oldPassHash) {
+      return next('You must provide your actual current password!');
+    }
+    if (newPassHash !== newPassHashRepeat) {
+      return next('New passwords must match!');
+    }
     return data.user.updateUser({ user, newPassHash })
       .then((result) => {
         res.status(200)

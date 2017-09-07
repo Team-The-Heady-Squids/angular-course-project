@@ -11,7 +11,6 @@ const controller = (data) => {
 
   const getThread = (req, res, next) => {
     const id = req.params.threadId;
-    console.log(id);
     data.thread.getThread(id)
       .then((thread) => {
         res.status(200)

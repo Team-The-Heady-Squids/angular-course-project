@@ -11,7 +11,6 @@ class Thread {
 
   static getId(title) {
     const prefix = Math.round(Math.random() * 10000);
-    console.log(title);
     title = title.toLowerCase();
     return (`${prefix}-${title}`)
       .split(' ')
