@@ -41,7 +41,8 @@
     <app-forum-post *ngFor="let post of forumThread.posts" [post]="post" [threadId]="forumThread.id" (postEdited)="updateThread($event)"></app-forum-post>
 
     <app-forum-post-create [threadId]="forumThread.id" (postCreated)="appendPost($event)"></app-forum-post-create>
-
-    <button class="btn btn-primary" (click)="goBack()">Back</button>
+    <div class="text-center">
+      <button class="btn btn-primary" (click)="goBack()">Back</button>
+    </div>
   </div>
 </div>

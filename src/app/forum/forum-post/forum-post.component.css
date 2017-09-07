@@ -17,12 +17,10 @@
   height: 100%;
   padding: 30px;
   border: 2px solid #423D3D;
-  border-radius: 0px 0px 0px 5px;
 }
 
 .style-right {
   height: 100%;
-  border-radius: 0px 0px 5px 0px;
   border: 2px solid #423D3D;
   padding: 30px;
 }
