@@ -1,8 +1,14 @@
-<h1>{{profile.username}}'s profile</h1>
-<p>Joined: {{profile.joined | date:'medium'}}</p>
-<input  type="button"
+<div class="row">
+<div class="col-sx-10 col-sx-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
+<h1 class="text-center">{{profile.username}}'s profile</h1>
+<p class="text-center">Joined: {{profile.joined | date:'medium'}}</p>
+<h3>Options:</h3>
+<p>Change password <input class="btn btn-primary" type="button"
         (click)="controlsCollapsed = !controlsCollapsed"
-        value="Controls">
+        value="Controls"></p>
+<!-- <input  type="button"
+        (click)="controlsCollapsed = !controlsCollapsed"
+        value="Controls"> -->
 <div class="row" *ngIf="!controlsCollapsed">
   <form class="col-md-4"
         [formGroup]="changePassForm"
@@ -30,4 +36,7 @@
             type="submit"
             value="Change password">
   </form>
+</div>
+
+</div>
 </div>

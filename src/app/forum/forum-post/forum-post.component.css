@@ -24,3 +24,8 @@
   border: 2px solid #423D3D;
   padding: 30px;
 }
+
+.absolute {
+  position: absolute;
+  z-index: 5;
+}
