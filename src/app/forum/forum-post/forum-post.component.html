@@ -20,33 +20,37 @@
 </div> -->
 
 <div class="row">
-  <div class="col-sm-3 col-md-3 text-center style-left" appZoomInText>
-    <p>Author: <a [routerLink]="[ '/users', post.author ]">{{post.author}}</a></p>
-    <p>{{post.created | date:'medium'}}</p>
-  </div>
+  <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
 
-  <div class="col-sm-9 col-md-9 style-right">
-    <div class="row">
+    <div class="col-sm-3 col-md-3 text-left style-left" appZoomInText>
+      <p>Author: <a [routerLink]="[ '/users', post.author ]">{{post.author}}</a></p>
+      <p>{{post.created | date:'medium'}}</p>
+    </div>
 
-      <div class="col-sm-9 col-md-9">
-        <p class="style-text">{{post.content}}</p>
-      </div>
+    <div class="col-sm-9 col-md-9 style-right">
+      <div class="row">
 
-      <div class="col-sm-3 col-md-3">
-        <div *ngIf="currentUser && currentUser === post.author" class="col-md-4">
-          <input class="btn btn-primary" type="button" (click)="controlsCollapsed=!controlsCollapsed" value="Show controls">
-          <div *ngIf="!controlsCollapsed">
-            <form (ngSubmit)="editPost(editForm.value)" #editForm=ngForm>
-              <div>
-                <input type="text" name="content" placeholder="New content" (ngModel)="content">
-              </div>
-              <input class="btn btn-primary" type="submit" value="Edit post">
-            </form>
-            <input class="btn btn-primary" type="button" value="Delete post" (click)="deletePost()">
+        <div class="col-sm-9 col-md-9">
+          <p class="style-text">{{post.content}}</p>
+        </div>
+
+        <div class="col-sm-3 col-md-3 style-edit">
+          <div *ngIf="currentUser && currentUser === post.author" class="col-md-4">
+            <input class="btn btn-primary" type="button" (click)="controlsCollapsed=!controlsCollapsed" value="Show controls">
+            <div *ngIf="!controlsCollapsed">
+              <form (ngSubmit)="editPost(editForm.value)" #editForm=ngForm>
+                <div>
+                  <input type="text" name="content" placeholder="New content" (ngModel)="content">
+                </div>
+                <input class="btn btn-success" type="submit" value="Edit post">
+              </form>
+              <input class="btn btn-danger" type="button" value="Delete post" (click)="deletePost()">
+            </div>
           </div>
         </div>
 
       </div>
     </div>
+
   </div>
 </div>
