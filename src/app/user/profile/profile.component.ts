@@ -1,3 +1,4 @@
+import { AuthService } from './../../_core/auth-service/auth.service';
 import { ToastsManager } from 'ng2-toastr';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -13,6 +14,7 @@ import { UserValidator } from '../user-validator';
 })
 export class ProfileComponent implements OnInit {
   profile;
+  currentUser;
 
   changePassForm: FormGroup;
   oldPass: FormControl;
@@ -21,11 +23,13 @@ export class ProfileComponent implements OnInit {
 
   controlsCollapsed = true;
   constructor(private userService: UsersService,
+    private authService: AuthService,
     private route: ActivatedRoute,
     private toastr: ToastsManager) { }
 
   ngOnInit() {
     this.profile = this.route.snapshot.data['profile'];
+    this.currentUser = this.authService.current();
 
     this.oldPass = new FormControl('', UserValidator.passHashValidators);
     this.newPass = new FormControl('', UserValidator.passHashValidators);

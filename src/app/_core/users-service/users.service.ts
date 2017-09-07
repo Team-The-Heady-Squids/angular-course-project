@@ -25,6 +25,16 @@ export class UsersService {
       });
   }
 
+  getProfile(username) {
+    return this.http.get(`${this.connectionURL}/${username}`, {
+        headers: BaseHeaders.get(),
+      })
+      .map((response) => response.json() as ProfileData)
+      .catch((err) => {
+        return Observable.throw(err.json());
+      });
+  }
+
   changePass(passData) {
     return this.http.put(this.connectionURL, passData, {
       headers: BaseHeaders.get(),

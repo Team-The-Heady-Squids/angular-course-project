@@ -11,6 +11,13 @@ import { LoggedInGuard } from './../_core/_guards/logged-in-guard/logged-in-guar
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'username', children: [
+      { path: ':username', component: ProfileComponent, resolve: {
+          'profile': UserProfileResolver
+        }
+      }
+    ],
+  },
   { path: 'login', component: LoginComponent, canActivate: [NotLoggedInGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [NotLoggedInGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [LoggedInGuard], resolve: {

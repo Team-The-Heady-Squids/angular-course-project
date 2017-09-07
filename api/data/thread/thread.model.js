@@ -2,7 +2,7 @@ class Thread {
   constructor(threadData) {
     this.author = threadData.author;
     this.title = threadData.title;
-    this.id = Thread.getId(threadData.title);
+    this.id = Thread.getId(threadData.title.replace(/[^a-zA-Z0-9]/g, ''));
     this.category = threadData.category;
     this.originalPost = threadData.originalPost;
     this.posts = [];

@@ -8,6 +8,10 @@ export class UserProfileResolver implements Resolve<any> {
   constructor(private userService: UsersService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    const username = route.params['username'];
+    if (username) {
+      return this.userService.getProfile(username);
+    }
     return this.userService.ownProfile();
   }
 }
