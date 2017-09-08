@@ -23,7 +23,7 @@
         <p>Author: <a [routerLink]="[ '/users/username', forumThread.author ]">{{forumThread.author}}</a></p>
       </div>
       <div class="col-sm-9 col-md-9 style-right">
-        <p>{{forumThread.originalPost.content}}</p>
+        <p appZoomInText>{{forumThread.originalPost.content}}</p>
       </div>
     </div>
 
