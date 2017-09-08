@@ -30,15 +30,21 @@
 
     <div class="row style-cont">
       <div class="col-sm-3 col-md-3 style-left">
-        <p>Author: <a [routerLink]="[ '/users', post.author ]">{{post.author}}</a></p>
+        <p>Author: <a [routerLink]="[ '/users/username', post.author ]">{{post.author}}</a></p>
         <div *ngIf="currentUser && currentUser === post.author" class="col-md-4">
           <input class="btn btn-primary" type="button" (click)="controlsCollapsed=!controlsCollapsed" value="Show controls">
           <div class="absolute" *ngIf="!controlsCollapsed">
-            <form (ngSubmit)="editPost(editForm.value)" #editForm=ngForm>
+            <form [formGroup]="editPostForm"
+                  (ngSubmit)="editPost(editForm.value)"
+                  #editForm=ngForm>
               <div>
-                <input type="text" name="content" placeholder="New content" (ngModel)="content">
+                <input  type="text"
+                        placeholder="New content"
+                        formControlName="content">
               </div>
-              <input class="btn btn-success" type="submit" value="Edit post">
+              <input  class="btn btn-success" 
+                      [disabled]="!editForm.valid"
+                      type="submit" value="Edit post">
             </form>
             <input class="btn btn-danger" type="button" value="Delete post" (click)="deletePost()">
           </div>

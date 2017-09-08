@@ -10,7 +10,7 @@ export class ZoomInTextDirective {
   constructor(private el: ElementRef, private render: Renderer2) { }
 
   @HostListener('click')
-  zoomInText() {
+  zoomInText(): void {
     if (this.zoomedIn) {
       this.render.removeClass(this.el.nativeElement, this.className);
     } else {

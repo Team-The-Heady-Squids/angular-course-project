@@ -5,7 +5,7 @@ export class AlertService {
 
   constructor() { }
 
-  msg(msg) {
+  msg(msg: string): void {
     alert(msg);
   }
 }

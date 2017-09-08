@@ -1,8 +1,10 @@
-import { ToastsManager } from 'ng2-toastr';
-import { ForumService } from './../../_core/forum-service/index';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+
+import { ToastsManager } from 'ng2-toastr';
+
+import { ForumService } from './../../_core/forum-service/index';
 
 import { IForumThread } from './../../model/forumThread.model';
 
@@ -23,11 +25,11 @@ export class ForumThreadPostsComponent implements OnInit {
     this.forumThread = this.route.snapshot.data['thread'];
   }
 
-  appendPost(event) {
+  appendPost(event): void {
     this.forumThread.posts.push(event.post);
   }
 
-  updateThread(event) {
+  updateThread(event): void {
     this.forumThread = event.data;
     this.toastr.success(event.msg);
   }

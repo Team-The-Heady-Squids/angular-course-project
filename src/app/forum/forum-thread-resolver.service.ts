@@ -8,7 +8,7 @@ export class ForumThreadResolver implements Resolve<any> {
   constructor(private forumService: ForumService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const id = route.params['id'];
+    const id: number = route.params['id'];
     return this.forumService.getPostById(id);
   }
 }

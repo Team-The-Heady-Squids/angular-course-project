@@ -20,7 +20,7 @@
 
     <div class="row style-cont">
       <div class="col-sm-3 col-md-3 style-left">
-        <p>Author: <a [routerLink]="[ '/users', forumThread.author ]">{{forumThread.author}}</a></p>
+        <p>Author: <a [routerLink]="[ '/users/username', forumThread.author ]">{{forumThread.author}}</a></p>
       </div>
       <div class="col-sm-9 col-md-9 style-right">
         <p>{{forumThread.originalPost.content}}</p>

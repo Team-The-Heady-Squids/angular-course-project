@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 
 import { ForumService } from './../_core/forum-service/forum.service';
+
 import { IForumThread } from './../model/forumThread.model';
 
 @Component({

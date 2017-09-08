@@ -1,8 +1,6 @@
 // import { UsersService } from './../users-service/index';
 // import { LoggerService } from './../logger-service/index';
 import { Injectable } from '@angular/core';
-
-import { BaseHeaders } from './../base-headers';
 import { Http } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
@@ -11,6 +9,10 @@ import { Observer } from 'rxjs/Observer';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
+
+import { BaseHeaders } from './../base-headers';
+
+import { ILoginData, IRegisterData } from '../../model/userData.model';
 
 @Injectable()
 export class AuthService {
@@ -22,12 +24,11 @@ export class AuthService {
   writeToLocalStorage(data) {
     localStorage.setItem('username', data['username']);
     localStorage.setItem('token', data['authKey']);
-    // window.location.reload();
 
     return Observable.create(); // returns new Observable
   }
 
-  register(user): Observable<any> {
+  register(user: IRegisterData): Observable<string> {
     return this.http.post(this.connectionURL, user)
       .map((response) => {
         response = response.json();
@@ -38,11 +39,9 @@ export class AuthService {
         this.writeToLocalStorage(match);
         return msg;
       });
-    // .catch((error) =>
-    //   console.error('Error has ocurred', error));
   }
 
-  login(user) {
+  login(user: ILoginData): Observable<string> {
     return this.http.put(`${this.connectionURL}/auth`, user)
       .map((response) => {
         response = response.json();
@@ -55,11 +54,11 @@ export class AuthService {
       });
   }
 
-  logout() {
+  logout(): void {
     localStorage.clear();
   }
 
-  current() {
+  current(): string {
     return localStorage.getItem('username');
   }
 }

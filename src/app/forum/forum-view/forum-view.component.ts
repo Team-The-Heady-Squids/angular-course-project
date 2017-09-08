@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
 import { ForumService } from '../../_core/forum-service/index';
+
+import { IForumThread } from './../../model/forumThread.model';
 
 @Component({
   selector: 'app-forum-view',
@@ -7,7 +10,7 @@ import { ForumService } from '../../_core/forum-service/index';
   styleUrls: ['./forum-view.component.css']
 })
 export class ForumViewComponent implements OnInit {
-  forumThreads;
+  forumThreads: IForumThread[];
   constructor(private forumService: ForumService) { }
 
   ngOnInit() {
@@ -15,8 +18,8 @@ export class ForumViewComponent implements OnInit {
       .subscribe((forumThreads) => this.forumThreads = forumThreads);
   }
 
-  removeThread(threadId) {
-    const index = this.forumThreads.findIndex((x) => x.id === threadId);
+  removeThread(threadId: string): void {
+    const index: number = this.forumThreads.findIndex((x) => x.id === threadId);
     this.forumThreads.splice(index, 1);
   }
 }

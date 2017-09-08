@@ -1,5 +1,3 @@
-import { IForumThread } from './../../model/forumThread.model';
-import { BaseHeaders } from './../base-headers';
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 
@@ -12,6 +10,9 @@ import 'rxjs/add/operator/catch';
 
 import { IThread } from './../../model/thread.model';
 import { IForumPost } from './../../model/forumPost.model';
+import { IForumThread } from './../../model/forumThread.model';
+import { BaseHeaders } from './../base-headers';
+
 
 
 @Injectable()
@@ -21,7 +22,7 @@ export class ForumService {
 
   constructor(private http: Http) { }
 
-  getThreads(): Observable<IThread[]> {
+  getThreads(): Observable<IForumThread[]> {
     return this.http.get(this.connectionURL)
       .map(response => response.json() as IThread[])
       .catch(this.handleErrors);
@@ -34,7 +35,8 @@ export class ForumService {
       .map(data => data[data.length - 1])
       .catch(this.handleErrors);
   }
-  createThread(threadData: IThread) {
+
+  createThread(threadData: IThread): Observable<IForumThread> {
     return this.http.post(this.connectionURL, threadData, {
       headers: BaseHeaders.get(),
     })
@@ -42,7 +44,7 @@ export class ForumService {
       .catch(this.handleErrors);
   }
 
-  createPost(postData, threadId) {
+  createPost(postData, threadId: string): Observable<IForumPost> {
     return this.http.post(`${this.connectionURL}/${threadId}`, postData, {
       headers: BaseHeaders.get(),
     })
@@ -50,7 +52,7 @@ export class ForumService {
       .catch(this.handleErrors);
   }
 
-  editPost(postData, postId, threadId) {
+  editPost(postData, postId: number, threadId: string): Observable<IForumPost> {
     return this.http.put(`${this.connectionURL}/${threadId}/${postId}`, postData, {
       headers: BaseHeaders.get(),
     })
@@ -58,20 +60,22 @@ export class ForumService {
       .catch(this.handleErrors);
   }
 
-  deletePost(postId, threadId) {
+  deletePost(postId: number, threadId: string): Observable<IForumPost> {
     return this.http.delete(`${this.connectionURL}/${threadId}/${postId}`, {
       headers: BaseHeaders.get(),
     })
       .map((response) => response.json() as IForumPost)
       .catch(this.handleErrors);
   }
-  deleteThread(threadId) {
+
+  deleteThread(threadId: string): Observable<IForumThread> {
     return this.http.delete(`${this.connectionURL}/${threadId}`, {
       headers: BaseHeaders.get(),
     })
       .map((response) => response.json() as IThread)
       .catch(this.handleErrors);
   }
+
   getPostById(id: number): Observable<IForumThread> {
     return this.http.get(`${this.connectionURL}/${id}`)
       .map(response => response.json() as IThread[])

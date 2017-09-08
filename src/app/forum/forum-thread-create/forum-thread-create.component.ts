@@ -1,8 +1,10 @@
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ToastsManager } from 'ng2-toastr';
-import { Router } from '@angular/router';
-import { ForumService } from './../../_core/forum-service/forum.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { ToastsManager } from 'ng2-toastr';
+
+import { ForumService } from './../../_core/forum-service/forum.service';
 
 @Component({
   selector: 'app-forum-thread-create',
@@ -43,7 +45,7 @@ export class ForumThreadCreateComponent implements OnInit {
     });
   }
 
-  createThread(threadData) {
+  createThread(threadData): void {
     this.forumService.createThread(threadData)
       .subscribe((response) => {
         const id = response.id;

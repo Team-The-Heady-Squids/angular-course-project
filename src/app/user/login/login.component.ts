@@ -1,16 +1,20 @@
-import { UserValidator } from './../user-validator';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ToastsManager } from 'ng2-toastr';
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 
+import { ToastsManager } from 'ng2-toastr';
+
+import { UserValidator } from './../user-validator';
 import { AuthService } from './../../_core/auth-service/index';
-import { Router } from '@angular/router';
+
+import { ILoginData } from '../../model/userData.model';
 
 @Component({
   selector: 'app-login',
@@ -43,7 +47,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login(user) {
+  login(user: ILoginData): void {
     this.authService.login(user)
       .subscribe((msg) => {
         this.toastr.success(msg);

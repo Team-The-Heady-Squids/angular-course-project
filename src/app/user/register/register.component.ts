@@ -1,9 +1,12 @@
-import { UserValidator } from './../user-validator';
 import { FormGroup, FormControl } from '@angular/forms';
-import { ToastsManager } from 'ng2-toastr';
 import { Router } from '@angular/router';
-import { AuthService } from './../../_core/auth-service/auth.service';
 import { Component, OnInit } from '@angular/core';
+
+import { ToastsManager } from 'ng2-toastr';
+
+import { AuthService } from './../../_core/auth-service/auth.service';
+import { UserValidator } from './../user-validator';
+import { IRegisterData } from '../../model/userData.model';
 
 @Component({
   selector: 'app-register',
@@ -25,7 +28,7 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private toastr: ToastsManager) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.usernameField = UserValidator.usernameField;
     this.passHashField = UserValidator.passHashField;
 
@@ -40,18 +43,9 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  register(data) {
-    if (!data.username || !data.passHash || !data.passHashRepeat) {
-      return this.toastr.error('Username or Password must not be empty');
-    }
+  register(data: IRegisterData) {
     if (data.passHash !== data.passHashRepeat) {
       return this.toastr.error('Passwords must match!');
-    }
-    if (3 >= data.username.length && data.username.length > 20) {
-      return this.toastr.error('Username must be between 3 and 20 symbols long');
-    }
-    if (6 > data.passHash.length && data.passHash.length > 20) {
-      return this.toastr.error('Password must be between 6 and 20 symbols long');
     }
 
     this.auth.register(data)
@@ -61,7 +55,6 @@ export class RegisterComponent implements OnInit {
       },
       (error) => {
         const err = error.json().msg;
-        console.log(err);
         this.toastr.error(err);
       });
   }

@@ -1,11 +1,17 @@
-import { AuthService } from './../../_core/auth-service/auth.service';
-import { ToastsManager } from 'ng2-toastr';
-import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { UsersService } from './../../_core/users-service/users.service';
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { FormControl, FormGroup } from '@angular/forms';
+
+import { ToastsManager } from 'ng2-toastr';
+
+import { AuthService } from './../../_core/auth-service/auth.service';
+import { UsersService } from './../../_core/users-service/users.service';
 
 import { UserValidator } from '../user-validator';
+
+import { IUserProfile } from './../../model/userProfile.model';
+import { IChangePassData } from './../../model/userChangePass.model';
 
 @Component({
   selector: 'app-profile',
@@ -13,8 +19,8 @@ import { UserValidator } from '../user-validator';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  profile;
-  currentUser;
+  profile: IUserProfile;
+  currentUser: string;
 
   changePassForm: FormGroup;
   oldPass: FormControl;
@@ -25,7 +31,8 @@ export class ProfileComponent implements OnInit {
   constructor(private userService: UsersService,
     private authService: AuthService,
     private route: ActivatedRoute,
-    private toastr: ToastsManager) { }
+    private toastr: ToastsManager,
+    private location: Location) { }
 
   ngOnInit() {
     this.profile = this.route.snapshot.data['profile'];
@@ -42,7 +49,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  changePassword(data) {
+  changePassword(data: IChangePassData): void {
     this.userService.changePass(data)
       .subscribe((response) => {
         this.toastr.success(response.msg);
@@ -50,5 +57,9 @@ export class ProfileComponent implements OnInit {
       (error) => {
         this.toastr.error(error.msg);
       });
+  }
+
+  back(): void {
+    this.location.back();
   }
 }

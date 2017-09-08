@@ -1,6 +1,8 @@
-import { ToastsManager } from 'ng2-toastr';
-import { AuthService } from './../_core/auth-service/auth.service';
 import { Component, OnInit, ViewContainerRef, AfterViewChecked } from '@angular/core';
+
+import { ToastsManager } from 'ng2-toastr';
+
+import { AuthService } from './../_core/auth-service/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +11,7 @@ import { Component, OnInit, ViewContainerRef, AfterViewChecked } from '@angular/
 })
 export class HeaderComponent implements OnInit, AfterViewChecked {
 
-  currentUser;
+  currentUser: string;
 
   constructor(private auth: AuthService,
   ) { }
