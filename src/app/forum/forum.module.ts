@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 
+import { MdAutocompleteModule } from '@angular/material';
+
 import { SharedModule } from './../_shared/shared.module';
 import { ForumRoutingModule } from './forum-routing.module';
 
@@ -15,7 +17,8 @@ import { ForumThreadResolver } from './forum-thread-resolver.service';
 @NgModule({
   imports: [
     SharedModule,
-    ForumRoutingModule
+    ForumRoutingModule,
+    MdAutocompleteModule
   ],
   declarations: [
     ForumViewComponent,

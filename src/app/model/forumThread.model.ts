@@ -9,4 +9,5 @@ export interface IForumThread {
     };
     posts: Array<IThread>;
     created: string;
+    category: string;
 }

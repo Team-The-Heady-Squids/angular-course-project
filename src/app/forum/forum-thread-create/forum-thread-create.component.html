@@ -32,9 +32,15 @@
         <div class="form-group">
           <label for="inputCategory" class="col-lg-2 control-label">Category</label>
           <div class="col-lg-10">
-           <input   class="form-control"
-                    placeholder="Category" type="text"
-                    formControlName="category">
+          <md-form-field>
+              <input class="form-control" type="text" mdInput [formControl]="category" [mdAutocomplete]="auto">
+           </md-form-field>
+           
+           <md-autocomplete #auto="mdAutocomplete">
+              <md-option *ngFor="let category of categories" [value]="category">
+                 {{ category }}
+              </md-option>
+           </md-autocomplete>
           </div>
         </div>
 

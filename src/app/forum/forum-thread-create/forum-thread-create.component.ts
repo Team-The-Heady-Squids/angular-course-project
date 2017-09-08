@@ -16,12 +16,15 @@ export class ForumThreadCreateComponent implements OnInit {
   title: FormControl;
   content: FormControl;
   category: FormControl;
+  categories: string[];
 
   constructor(private router: Router,
     private forumService: ForumService,
     private toastr: ToastsManager) { }
 
   ngOnInit() {
+    this.categories = this.forumService.getCategories();
+
     this.title = new FormControl('', [
       Validators.required,
       Validators.minLength(2),

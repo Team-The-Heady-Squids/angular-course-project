@@ -11,11 +11,21 @@ import { IForumThread } from './../../model/forumThread.model';
 })
 export class ForumViewComponent implements OnInit {
   forumThreads: IForumThread[];
+  categories: string[] = [];
   constructor(private forumService: ForumService) { }
 
   ngOnInit() {
     this.forumService.getThreads()
-      .subscribe((forumThreads) => this.forumThreads = forumThreads);
+      .subscribe((forumThreads) => {
+        this.forumThreads = forumThreads;
+        forumThreads.forEach((thread: IForumThread): void => {
+          const category: string = thread.category;
+          if (this.categories.indexOf(category) === -1) {
+            this.categories.push(category);
+          }
+          this.forumService.setCategories(this.categories);
+        });
+      });
   }
 
   removeThread(threadId: string): void {

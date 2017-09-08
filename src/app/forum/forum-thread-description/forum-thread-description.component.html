@@ -27,6 +27,7 @@
   <div class="panel-body">
     <div class="col-md-4 text-left title-color">
       <h4 class="panel-title text-center"><a [routerLink]="[ '/forum', forumThread.id ]">Title: {{forumThread.title | reduceTextLength: 20}}</a></h4>
+      <h4 class="panel-title text-center">Category: {{forumThread.category}}</h4>
     </div>
     <div class="col-md-3 text-right">
       <p>Posts: {{forumThread.posts.length + 1}}</p>

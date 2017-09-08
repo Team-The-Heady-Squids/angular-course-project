@@ -17,6 +17,7 @@ import { BaseHeaders } from './../base-headers';
 
 @Injectable()
 export class ForumService {
+  categories: string[];
 
   private connectionURL = 'http://localhost:8080/threads';
 
@@ -80,6 +81,14 @@ export class ForumService {
     return this.http.get(`${this.connectionURL}/${id}`)
       .map(response => response.json() as IThread[])
       .catch(this.handleErrors);
+  }
+
+  setCategories(categories: string[]): void {
+    this.categories = categories;
+  }
+
+  getCategories(): string[] {
+    return this.categories;
   }
 
   private handleErrors(error: any): Observable<any> {
