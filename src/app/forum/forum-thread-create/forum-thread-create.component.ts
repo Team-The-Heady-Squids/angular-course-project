@@ -1,7 +1,7 @@
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
 import { ToastsManager } from 'ng2-toastr';
 
 import { ForumService } from './../../_core/forum-service/forum.service';
@@ -20,6 +20,7 @@ export class ForumThreadCreateComponent implements OnInit {
 
   constructor(private router: Router,
     private forumService: ForumService,
+    private location: Location,
     private toastr: ToastsManager) { }
 
   ngOnInit() {
@@ -55,5 +56,8 @@ export class ForumThreadCreateComponent implements OnInit {
         this.toastr.success('Successfuly created thread!');
         this.router.navigateByUrl(`/forum/${id}`);
       });
+  }
+  goBack(): void {
+    this.location.back();
   }
 }

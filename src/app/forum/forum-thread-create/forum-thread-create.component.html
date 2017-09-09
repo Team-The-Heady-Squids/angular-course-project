@@ -60,7 +60,7 @@
             <button type="submit"
                     [disabled]="!threadForm.valid"
                     class="btn btn-primary">Create thread</button>
-            <button type="reset" class="btn btn-default">Cancel</button>
+            <button type="reset" class="btn btn-default" (click)="goBack()">Cancel</button>
           </div>
         </div>
       </fieldset>
