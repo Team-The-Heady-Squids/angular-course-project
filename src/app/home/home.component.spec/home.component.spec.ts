@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 // Test utils
-import { TestBed, ComponentFixture, async } from '@angular/core/testing';
+import { TestBed, ComponentFixture, async, inject } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
@@ -121,6 +121,24 @@ describe('HomeComponent tests:', () => {
         const p: HTMLElement = nextSibling.querySelector('p');
         const content: string = p.innerHTML;
         expect(content.indexOf(reassignTestThread.originalPost.content)).toBeGreaterThanOrEqual(0);
+      });
+    });
+
+    describe(`When calling goToForumPost():`, () => {
+      const expectedUrl = `forum/${testThread.id}`;
+
+      beforeEach(() => {
+        component.forumThread = testThread;
+        fixture.detectChanges();
+      });
+
+      it(`Expect to navigate to "${expectedUrl}" if forumThread.id is "${testThread.id}"`, () => {
+        inject([Router], (router: Router) => {
+          const spy = spyOn(router, 'navigateByUrl');
+          component.goToForumPost();
+          const url = spy.mostRecentCall[0];
+          expect(url).toEqual(expectedUrl);
+        });
       });
     });
   });

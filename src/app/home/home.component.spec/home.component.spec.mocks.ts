@@ -11,6 +11,11 @@ const activatedRouteMock = {
   }
 };
 
-const routerMock = {};
+const routerMock = {
+  navigateByUrl: (url) => {
+    console.log('called');
+    return null;
+  }
+};
 
 export { forumServiceMock, activatedRouteMock, routerMock };

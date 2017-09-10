@@ -7,7 +7,7 @@ const testThread: IForumThread = {
     content: 'test-content',
   },
   created: 'test-created',
-  id: `1234-${this.title}`,
+  id: `1234-test-title`,
   posts: [],
   category: 'test-category'
 };
@@ -19,7 +19,7 @@ const reassignTestThread: IForumThread = {
     content: 'reassign-content',
   },
   created: 'reassign-created',
-  id: `1234-${this.title}`,
+  id: `1234-reassign-title`,
   posts: [],
   category: 'reassign-category'
 };
