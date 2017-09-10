@@ -33,18 +33,18 @@ describe('HomeComponent tests:', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-        imports: [
-          SharedModule
-        ],
-        declarations: [
-          HomeComponent
-        ],
-        providers: [
-          { provide: ActivatedRoute, useValue: activatedRouteMock },
-          { provide: ForumService, useValue: forumServiceMock },
-          { provide: Router, useValue: routerMock }
-        ]
-      })
+      imports: [
+        SharedModule
+      ],
+      declarations: [
+        HomeComponent
+      ],
+      providers: [
+        { provide: ActivatedRoute, useValue: activatedRouteMock },
+        { provide: ForumService, useValue: forumServiceMock },
+        { provide: Router, useValue: routerMock }
+      ]
+    })
       .compileComponents()
       .then(() => {
         // Component setup

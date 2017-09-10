@@ -1,6 +1,6 @@
-<li *ngIf="user" class="well well-sm">
+<li *ngIf="user" class="well well-sm style-login">
   <div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{user}}
+    <button class="btn btn-primary dropdown-toggle " type="button" data-toggle="dropdown">{{user}}
     <span class="caret"></span></button>
     <ul class="dropdown-menu">
       <li><a [routerLink]="[ '/users', 'profile' ]">Profile</a></li>
@@ -9,7 +9,7 @@
   </div>
 </li>
 
-<li *ngIf="!user" class="well well-sm">
+<li *ngIf="!user" class="well well-sm style-login">
   <a class="btn btn-default btn-sm" [routerLink]="[ '/users/login' ]">Login</a>
   <span> or </span>
   <a class="btn btn-default btn-sm" [routerLink]="[ '/users/register' ]">Register</a>
