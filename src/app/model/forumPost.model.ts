@@ -3,4 +3,5 @@ export interface IForumPost {
   content: string;
   created: string;
   id: number;
+  lastEdited?: string;
 }

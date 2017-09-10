@@ -38,6 +38,7 @@ export class ForumPostCreateComponent implements OnInit {
     this.forumService.createPost(postData, this.threadId)
       .subscribe((post) => {
         this.toastr.success('Successfuly created post!');
+        this.postForm.reset();
         this.postCreated.emit(post);
       },
       (error) => {

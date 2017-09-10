@@ -1,3 +1,4 @@
+import { ToastsManager } from 'ng2-toastr';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { ForumService } from './../../_core/forum-service/forum.service';
@@ -18,7 +19,8 @@ export class ForumThreadDescriptionComponent implements OnInit {
   forumThreadDeleted = new EventEmitter();
 
   constructor(private forumService: ForumService,
-    private auth: AuthService) { }
+    private auth: AuthService,
+    private toastr: ToastsManager) { }
 
   ngOnInit() {
     this.currentUser = this.auth.current();
@@ -27,6 +29,7 @@ export class ForumThreadDescriptionComponent implements OnInit {
   deleteThread(): void {
     this.forumService.deleteThread(this.forumThread.id)
       .subscribe((updatedThread) => {
+        this.toastr.success('Successfuly deleted thread!');
         this.forumThreadDeleted.emit(this.forumThread.id);
       });
   }

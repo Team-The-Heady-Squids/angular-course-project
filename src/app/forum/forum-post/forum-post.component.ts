@@ -38,7 +38,7 @@ export class ForumPostComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = this.auth.current();
 
-    this.content = new FormControl('', [
+    this.content = new FormControl(this.post.content, [
       Validators.required,
       Validators.minLength(2),
       Validators.maxLength(200)

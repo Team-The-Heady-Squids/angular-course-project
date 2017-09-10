@@ -20,7 +20,7 @@
 </div> -->
 
 <div class="row">
-  <div class="col-sx-10 col-sx-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
+  <div class="col-sx-11 col-sx-offset-1 col-sm-11 col-sm-offset-1 col-md-11 col-md-offset-1 style-cont">
 
     <div class="row">
       <div class="col-sm-12 col-md-12 style-time">
@@ -28,7 +28,7 @@
       </div>
     </div>
 
-    <div class="row style-cont">
+    <div class="row">
       <div class="col-sm-3 col-md-3 style-left">
         <p>Author: <a [routerLink]="[ '/users/username', post.author ]">{{post.author}}</a></p>
         <div *ngIf="currentUser && currentUser === post.author" class="col-md-4">
@@ -52,7 +52,8 @@
       </div>
 
       <div class="col-sm-9 col-md-9 style-right">
-        <p appZoomInText>{{post.content}}</p>
+        <p appZoomInText class="well well-sm">{{post.content}}</p>
+        <p *ngIf="post.lastEdited">Last edited: {{post.lastEdited | date:'medium'}}</p>
       </div>
     </div>
   </div>

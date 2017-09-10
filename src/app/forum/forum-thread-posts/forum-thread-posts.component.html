@@ -13,12 +13,12 @@
       <div class="col-sm-offset-1 col-md-offset-1">
         <h2>Title: <strong>{{forumThread.title}}</strong></h2>
       </div>
-      <div class="col-sm-12 col-md-12 style-time">
-        <p>{{forumThread.created | date:'medium'}}</p>
-      </div>
     </div>
 
     <div class="row style-cont">
+      <div class="col-sm-12 col-md-12 style-time">
+        <p>{{forumThread.created | date:'medium'}}</p>
+      </div>
       <div class="col-sm-3 col-md-3 style-left">
         <p>Author: <a [routerLink]="[ '/users/username', forumThread.author ]">{{forumThread.author}}</a></p>
       </div>
@@ -38,8 +38,7 @@
 
     <!-- </div>
         </div> -->
-    <app-forum-post *ngFor="let post of forumThread.posts" [post]="post" [threadId]="forumThread.id" (postEdited)="updateThread($event)"></app-forum-post>
-
+    <app-forum-post  *ngFor="let post of forumThread.posts" [post]="post" [threadId]="forumThread.id" (postEdited)="updateThread($event)"></app-forum-post>
     <app-forum-post-create [threadId]="forumThread.id" (postCreated)="appendPost($event)"></app-forum-post-create>
     <div class="text-center">
       <button class="btn btn-primary" (click)="goBack()">Back</button>

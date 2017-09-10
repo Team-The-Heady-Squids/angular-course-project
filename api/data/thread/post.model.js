@@ -1,6 +1,7 @@
 class Post {
   constructor(content) {
     this.content = content;
+    this.lastEdited = null;
   }
 
   static getId() {

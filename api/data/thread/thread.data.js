@@ -13,7 +13,7 @@ const threadsData = (db) => {
           }
           // const startIndex = (pageIndex - 1) * perPage || 0;
           // const endIndex = startIndex + perPage || res.length;
-          return resolve(res);
+          return resolve(res.reverse());
         });
     });
   };
@@ -93,7 +93,8 @@ const threadsData = (db) => {
           'posts.author': author,
         },
         {
-          $set: { 'posts.$.content': newContent },
+          $set: { 'posts.$.content': newContent,
+                  'posts.$.lastEdited': (new Date()).toISOString() },
         },
         (err, result) => {
           if (err) {
