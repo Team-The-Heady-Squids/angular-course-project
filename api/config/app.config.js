@@ -32,6 +32,7 @@ const attach = (data) => {
     res.header('Access-Control-Allow-Credentials', true);
     return next();
   });
+
   // Attaching routers
   require('./routes')(app, data);
 
