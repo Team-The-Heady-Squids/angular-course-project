@@ -8,16 +8,17 @@ import 'rxjs/add/operator/toPromise';
 import { BaseHeaders } from './../base-headers';
 import { IUserProfile } from './../../model/userProfile.model';
 import { IChangePassData } from './../../model/userChangePass.model';
+import { PORT } from '../../../../api/constants/index.js';
 
 @Injectable()
 export class UsersService {
-  private connectionURL = 'http://localhost:8080/users'; // http://localhost:8080/users
+  private connectionURL = `http://localhost:${PORT}/users`; // http://localhost:8080/users
   constructor(private http: Http) { }
 
   ownProfile(): Observable<IUserProfile> {
     return this.http.get(this.connectionURL, {
-        headers: BaseHeaders.get(),
-      })
+      headers: BaseHeaders.get(),
+    })
       .map((response) => response.json() as IUserProfile)
       .catch((err) => {
         return Observable.throw(err.json());
@@ -26,8 +27,8 @@ export class UsersService {
 
   getProfile(username: string): Observable<IUserProfile> {
     return this.http.get(`${this.connectionURL}/${username}`, {
-        headers: BaseHeaders.get(),
-      })
+      headers: BaseHeaders.get(),
+    })
       .map((response) => response.json() as IUserProfile)
       .catch((err) => {
         return Observable.throw(err.json());

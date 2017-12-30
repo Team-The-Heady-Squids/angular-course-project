@@ -13,13 +13,15 @@ import { IForumPost } from './../../model/forumPost.model';
 import { IForumThread } from './../../model/forumThread.model';
 import { BaseHeaders } from './../base-headers';
 
+import { PORT } from '../../../../api/constants/index.js';
+
 
 
 @Injectable()
 export class ForumService {
   categories: string[];
 
-  private connectionURL = 'http://localhost:8080/threads'; // http://localhost:8080/threads
+  private connectionURL = `http://localhost:${PORT}/users`; // http://localhost:8080/threads
 
   constructor(private http: Http) { }
 
