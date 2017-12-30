@@ -13,11 +13,12 @@ import 'rxjs/add/operator/catch';
 import { BaseHeaders } from './../base-headers';
 
 import { ILoginData, IRegisterData } from '../../model/userData.model';
-import { PORT } from '../../../../api/constants/index.js';
+
+import { Constants } from '../../constants/constants';
 
 @Injectable()
 export class AuthService {
-  private connectionURL = `http://localhost:${PORT}/users`; // http://localhost:8080/users
+  private connectionURL = Constants.hostUrl + 'users'; // http://localhost:8080/users
 
   constructor(
     private http: Http) { }

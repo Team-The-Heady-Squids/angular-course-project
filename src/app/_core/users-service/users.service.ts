@@ -8,11 +8,12 @@ import 'rxjs/add/operator/toPromise';
 import { BaseHeaders } from './../base-headers';
 import { IUserProfile } from './../../model/userProfile.model';
 import { IChangePassData } from './../../model/userChangePass.model';
-import { PORT } from '../../../../api/constants/index.js';
+
+import { Constants } from '../../constants/constants';
 
 @Injectable()
 export class UsersService {
-  private connectionURL = `http://localhost:${PORT}/users`; // http://localhost:8080/users
+  private connectionURL = Constants.hostUrl + 'users'; // http://localhost:8080/users
   constructor(private http: Http) { }
 
   ownProfile(): Observable<IUserProfile> {
