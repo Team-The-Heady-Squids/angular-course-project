@@ -11,7 +11,7 @@ import { IChangePassData } from './../../model/userChangePass.model';
 
 @Injectable()
 export class UsersService {
-  private connectionURL = 'http://localhost:8080/users';
+  private connectionURL = 'http://localhost:8080/users'; // http://localhost:8080/users
   constructor(private http: Http) { }
 
   ownProfile(): Observable<IUserProfile> {

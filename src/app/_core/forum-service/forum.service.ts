@@ -19,7 +19,7 @@ import { BaseHeaders } from './../base-headers';
 export class ForumService {
   categories: string[];
 
-  private connectionURL = 'http://localhost:8080/threads';
+  private connectionURL = 'http://localhost:8080/threads'; // http://localhost:8080/threads
 
   constructor(private http: Http) { }
 

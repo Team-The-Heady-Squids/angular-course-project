@@ -16,7 +16,7 @@ import { ILoginData, IRegisterData } from '../../model/userData.model';
 
 @Injectable()
 export class AuthService {
-  private connectionURL = 'http://localhost:8080/users';
+  private connectionURL = 'http://localhost:8080/users'; // http://localhost:8080/users
 
   constructor(
     private http: Http) { }
